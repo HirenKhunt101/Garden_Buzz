@@ -1,10 +1,29 @@
 import "./App.css";
+import React, { Component }  from 'react'; 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // import Navbar from "./Controllers/Navbar/navbar";
 import Navbar from "./Controllers/Navbar/Navbar";
 
 function App() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  async function registerUser(event) {
+    console.log("start");
+    event.preventDefault();
+    const response = await fetch("http://localhost:4200/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+      }),
+    });
 
 
   return (
@@ -146,6 +165,12 @@ function App() {
       </footer>
     </div>
   );
+
+  return (
+      <h1>Hwkkios</h1>
+  );
+
+
 }
 
 export default App;
