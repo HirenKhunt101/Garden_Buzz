@@ -5,57 +5,7 @@ import { Link } from "react-router-dom";
 import Navbar from "./Controllers/Navbar/Navbar";
 
 function App() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  async function registerUser(event) {
-    console.log("start");
-    event.preventDefault();
-    const response = await fetch("http://localhost:4200/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        password,
-      }),
-    });
-
-    let data = await response.JSON();
-    console.log(data);
-  }
-
   return (
-    // <div>
-    //   <h1>Register</h1>
-    //   <form onSubmit={registerUser}>
-    //     <input
-    //       value={name}
-    //       onChange={(e) => setName(e.target.value)}
-    //       type="text"
-    //       placeholder="first name"
-    //     />
-    //     <br />
-    //     <input
-    //       value={email}
-    //       onChange={(e) => setEmail(e.target.value)}
-    //       type="email"
-    //       placeholder="Email"
-    //     />
-    //     <br />
-    //     <input
-    //       value={password}
-    //       onChange={(e) => setPassword(e.target.value)}
-    //       type="password"
-    //       placeholder="password"
-    //     />
-    //     <br />
-    //     <input type="submit" value="Register" />
-    //   </form>
-    // </div>
     <div className="home">
       <Navbar />
       <hr />
