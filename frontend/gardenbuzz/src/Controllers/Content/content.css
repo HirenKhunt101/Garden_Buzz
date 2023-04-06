@@ -897,7 +897,7 @@ the website, in dark theme
   }
 }
 
-@media screen and (max-width: 767px){
+@media screen and (min-width: 767px){
   body{
     margin: 0;
   }
@@ -906,7 +906,6 @@ the website, in dark theme
     height: calc(var(--header-height) + 1.5rem);
     column-gap: 3rem;
   }
-
   .nav__toggle,
   .nav__close{
     display: none;
@@ -919,7 +918,6 @@ the website, in dark theme
     margin-left: auto;
   }
 
-  
   .home__container,
   .about__container,
   .questions__container,
@@ -952,7 +950,6 @@ the website, in dark theme
   .footer__subscribe{
     width: initial;
   }
-
 }
 
 /* For large devices */

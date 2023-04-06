@@ -1,88 +1,65 @@
 import React, { useState } from "react";
+// import {Helmet} from "react-helmet";
 import "./navbar.css";
-import {
-  FaFacebookSquare,
-  FaInstagramSquare,
-  FaYoutubeSquare,
-} from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { BrowserRouter } from 'react-router-dom';
-import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
-  const [showMediaIcons, setShowMediaIcons] = useState(false);
   return (
     <>  
-      <nav className="main-nav">
-        {/* 1st logo part  */}
-        <div className="logo">
-          <h2>
-            <span>G</span>arden
-            <span>B</span>uzz
-          </h2>
-        </div>
 
-        {/* 2nd menu part  */}
-        <div
-          className={
-            showMediaIcons ? "menu-link mobile-menu-link" : "menu-link"
-          }>
-          <ul>
-            <li>
-              <a href ="/">Home</a >
-            </li>
-            <li>
-              <a href="#">about</a>
-            </li>
-            <li>
-              <a href="#">services</a>
-            </li>
-            <li>
-              <a href="#">contact</a>
-            </li>
-          </ul>
-        </div>
+{/* <script src="/Controllers/main.js" type="text/javascript" /> */}
+      <header className="header" id="header">
+            <nav className="nav container">
+                <a href="#" className="nav__logo">
+                    <i className="ri-leaf-line nav__logo-icon"></i> Garden Buzz
+                </a>
 
-        {/* 3rd social media links */}
-        <div className="social-media">
-          <ul className="social-media-desktop">
-            <li>
-              <a
-                href="https://www.youtube.com/channel/UCwfaAHy4zQUb2APNOGXUCCA"
-                target="_thapa">
-                <FaFacebookSquare className="facebook" />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.instagram.com/thapatechnical/"
-                target="_thapa">
-                <FaInstagramSquare className="instagram" />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.youtube.com/channel/UCwfaAHy4zQUb2APNOGXUCCA"
-                target="_thapa">
-                <FaYoutubeSquare className="youtube" />
-              </a>
-            </li>
-          </ul>
+                <div className="nav__menu" id="nav-menu">
+                    <ul className="nav__list">
+                        <li className="nav__item">
+                            <a href="#home" className="nav__link active-link">Home</a>
+                        </li>
+                        <li className="nav__item">
+                            <a href="#about" className="nav__link">About</a>
+                        </li>
+                        <li className="nav__item">
+                            <a href="#products" className="nav__link">Products</a>
+                        </li>
+                        <li className="nav__item">
+                            <a href="#faqs" className="nav__link">FAQs</a>
+                        </li>
+                        <li className="nav__item">
+                            <a href="#contact" className="nav__link">Contact Us</a>
+                        </li>
+                    </ul>
 
-          {/* hamburget menu start  */}
-          <div className="hamburger-menu">
-            <a href="#" onClick={() => setShowMediaIcons(!showMediaIcons)}>
-              <GiHamburgerMenu />
-            </a>
-          </div>
-        </div>
-      </nav>
+                    <div className="nav__close" id="nav-close">
+                        <i className="ri-close-line"></i>
+                    </div>
+                </div>
 
-      {/* hero section  */}
-      {/* <section className="hero-section">
-        <p>Welcome to </p>
-        <h1>Thapa Technical</h1>
-      </section> */}
+                <div className="nav__btns">
+                    {/* <!-- Theme change button --> */}
+                    <i className="ri-moon-line change-theme" id="theme-button"></i>
+
+                    <div className="nav__toggle" id="nav-toggle">
+                        <i className="ri-menu-line"></i>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        {/* <!--=============== SCROLL UP ===============--> */}
+        <a href="#" class="scrollup" id="scroll-up"> 
+            <i class="ri-arrow-up-fill scrollup__icon"></i>
+        </a>
+
+        {/* <!--=============== SCROLL REVEAL ===============--> */}
+        <script src="./Controllers/scrollreveal.min.js"></script>
+        
+        {/* <!--=============== MAIN JS ===============--> */}
+        <script src="./Controllers/main.js"></script>
+
     </>
   );
 };
