@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./content.css";
+// import "./button.scss";
 import {
     FaFacebookSquare,
     FaInstagramSquare,
     FaYoutubeSquare,
   } from "react-icons/fa";
+  import { Link } from "react-router-dom";
 
 
 const Content = () => {
@@ -323,7 +325,33 @@ const Content = () => {
                     </div>
                 </div>
             </section>
+          
+            {/*<-========================== want to buy or want to sell =========================->*/}
+            <section className="steps section container">
+                <div className="buysell__bg">
+                    
+                    <div className="buysell__container grid">
+                        {/* <div className="buysell__card"> */}
+                            <div className="buttoncontainer">
+                                {/* <a href="/Sellform" class="sellbtn">WANT TO SELL</a> */}
+                                <Link to="/sellform" class="sellbtn">WANT TO SELL</Link>
+                            </div>
+                        {/* </div> */}
+                        
 
+                        {/* <div className="buysell__card">  */}
+                            <div className="buttoncontainer">
+                                <Link to="/sellform" class="sellbtn">WANT TO BUY</Link>
+                            </div>
+                         {/* </div> */}
+
+                    </div>
+
+
+                </div>
+            </section>
+
+ 
             {/* <!--==================== CONTACT ====================--> */}
             <section className="contact section container" id="contact">                
                 <div className="contact__container grid">
