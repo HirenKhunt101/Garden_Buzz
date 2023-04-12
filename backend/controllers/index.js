@@ -7,6 +7,8 @@ const User = schema.user;
 app.use(cors());
 app.use(express.json());
 
+const seller = require("./seller");
+
 const db_url =
   "mongodb+srv://hirenkhunt:hiren6351@cluster0.hrfgclf.mongodb.net/?retryWrites=true&w=majority";
 
@@ -44,6 +46,10 @@ app.post("/api/register", async (req, res) => {
   }
 });
 
-app.get("/", async (req, res) => {
-  res.send("Server started 123");
-});
+const guest = require("./../routes/guest_operation");
+app.use("/gardenbuzz", guest);
+
+// app.post("/gardenbuzz/add_seller_detail", async (req, res) => {
+//   seller.add_seller_detail(req);
+//   res.send("Server started 123");
+// });
