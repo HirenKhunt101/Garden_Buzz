@@ -13,11 +13,12 @@ const Content = () => {
   return (
     <>  
          <main className="main">
+         {/* <img src={require('./vel.jpeg')} alt="" className="vel__img"/> */}
             {/* <!--==================== HOME ====================--> */}
             <section className="home" id="home">
                 <div className="home__container container grid">
                     <img src={require('./home.png')} alt="" className="home__img"/>
-
+                    
                     <div className="home__data">
                         <h1 className="home__title">
                             Plants will make <br></br> your life better
@@ -48,6 +49,7 @@ const Content = () => {
                     </div>
                 </div>
             </section>
+
 
             {/* <!--==================== ABOUT ====================--> */}
             <section className="about section container" id="about">
@@ -364,7 +366,7 @@ const Content = () => {
                                 <h3 className="contact__subtitle">Call us for instant support</h3>
                                 <span className="contact__description">
                                     <i className="ri-phone-line contact__icon"></i>
-                                    +999 888 777
+                                    +91 63518 69907
                                 </span>
                             </div>
 

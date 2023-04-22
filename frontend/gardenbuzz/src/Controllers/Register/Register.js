@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./login.css";
+import "./register.css";
 
+const Register = () => {
 
-const Login = () => {
-
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
+    const [contactnumber, setContact] = useState('')
+    const [address, setAddress] = useState('')
+    const [pincode, setPincode] = useState('')
+    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
 
@@ -19,7 +23,12 @@ async function registerUser(event) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+            name,
             email,
+            contactnumber,
+            address,
+            pincode,
+            username,
             password,
         }),
     })
@@ -32,8 +41,9 @@ async function registerUser(event) {
     }
 }
 
-  return (
-    <>  
+    return (
+
+        <>  
         <div className="login-root">
             <div className="box-root flex-flex flex-direction--column" style={{minHeight: "100vh", flexGrow: 1}}>
                 <div className="loginbackground box-background--white padding-top--64">
@@ -73,39 +83,49 @@ async function registerUser(event) {
                 <div className="box-root padding-top--24 flex-flex flex-direction--column" style={{ flexGrow: 1, zIndex: 9 }}>
                     <div className="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
                         <h1>
-                        <Link to="http://blog.stackfindover.com/" rel="dofollow"></Link>GardenBuzz
+                        GardenBuzz
                         </h1>
                     </div>
                     <div className="formbg-outer">
                         <div className="formbg">
                             <div className="formbg-inner padding-horizontal--48">
-                                <span className="padding-bottom--15">Sign in to your account</span>
-                                <form id="stripe-login">
+                                <span className="padding-bottom--15">Register your account</span>
+                                <form onSubmit={registerUser} id="stripe-login">
                                         <div className="loginp1">
+                                            
                                             <div className="field padding-bottom--24">
+                                                <label htmlFor="name">Nursery Name:</label>
+                                                <input value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="name" required/>
+
                                                 <label htmlFor="email">Email:</label>
                                                 <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="email" required/>
 
-                                            </div>
-                                            <div className="field padding-bottom--24">
-                                                <div className="grid--50-50">
-                                                    <label htmlFor="password">Password</label>
-                                                    <div className="reset-pass">
-                                                        <Link to="#">Forgot your password?</Link>
-                                                    </div>
-                                                </div>
-                                                <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="password" required/>
+
+                                                <label htmlFor="contactnumber">Contact Number:</label>
+                                                <input value={contactnumber} onChange={(e) => setContact(e.target.value)} type="tel" placeholder="contact number" required/>
+
+                                                <label htmlFor="password">Address:</label>
+                                                <input value={address} onChange={(e) => setAddress(e.target.value)} type="text" placeholder="address" rows="3" required/>
+
+                                                <label htmlFor="pincode">Pincode:</label> 
+                                                <input value={pincode} onChange={(e) => setPincode(e.target.value)} type="text" placeholder="pincode" pattern="[0-9]{6}" maxLength="6" required/>
+
+                                                <label htmlFor="username">Username:</label>
+                                                <input value={username} onChange={(e) => setUsername(e.target.value)} type="text" placeholder="username"required />
+
+                                                <label htmlFor="password">Password:</label>
+                                                <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="password" require/>
+
+                                                <div className="reset-pass">
+                                                        <Link to="#">Login?</Link>
+                                                 </div>
 
                                             </div>
+                                            
+                                        </div>
 
-                                        </div>
-                                        <div className="field field-checkbox padding-bottom--24 flex-flex align-center">
-                                            <label htmlFor="checkbox">
-                                            <input type="checkbox" name="checkbox" required/> Stay signed in for a week
-                                            </label>
-                                        </div>
                                     <div className="field padding-bottom--24">
-                                        <input type="submit" name="submit" value="Continue" required/>
+                                        <input type="submit" name="submit" value="Register" required/>
                                     </div>
                                     <div className="field">
                                         <Link className="ssolink" to="#">Use single sign-on (Google) instead</Link>
@@ -128,7 +148,8 @@ async function registerUser(event) {
         </div>
 
     </>
+        
   );
 };
 
-export default Login;
+export default Register;

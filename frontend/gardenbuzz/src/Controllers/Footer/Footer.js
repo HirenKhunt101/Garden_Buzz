@@ -30,8 +30,8 @@ const Footer = () => {
                     <h3 class="footer__title">Our Address</h3>
 
                     <ul class="footer__data">
-                        <li class="footer__information">1234 - Peru</li>
-                        <li class="footer__information">La Libertad - 43210</li>
+                        <li class="footer__information">1234 - CG RODE</li>
+                        <li class="footer__information">AHMEDABAD - 43210</li>
                         <li class="footer__information">123-456-789</li>
                     </ul>
                 </div>
@@ -40,7 +40,7 @@ const Footer = () => {
                     <h3 class="footer__title">Contact Us</h3>
 
                     <ul class="footer__data">
-                        <li class="footer__information">+999 888 777</li>
+                        <li class="footer__information">+91 63518 69907</li>
                         
                         <div class="footer__social">
                             <a href="https://www.facebook.com/" class="footer__social-link">

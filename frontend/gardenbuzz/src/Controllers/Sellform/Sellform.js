@@ -10,19 +10,19 @@ const Sellform = () => {
         <section className="sellformsection">
           <div className="sellform__container grid">
             <div className="p1">
-                <h1>Product Form</h1>
-              <form action="" method="post">
+                <h1 className="ProductForm">Product Form</h1>
+              <form action="" method="post" className="form1">
                 <label for="product-name">Name:</label>
-                <input type="text" id="product-name" name="product-name" required/>
+                <input type="text" id="product-name" name="product-name" className="textclass" required/>
               
                 <label for="price">Price:</label>
-                <input type="number" id="price" name="price" min="0" step="0.01" required/>
+                <input type="number" id="price" name="price" min="0" step="0.01" className="textclass" required/>
               
                 <label for="description">Description:</label>
                 <textarea id="description" name="description" rows="1" required></textarea>
               
                 <label for="pots-color">Pot Color:</label>
-                <select id="pots-color" name="pots-color[]" >
+                <select id="pots-color" name="pots-color[]"className="textclass" >
                   <option value="white">White</option>
                   <option value="black">Black</option>
                   <option value="red">Red</option>
@@ -33,36 +33,36 @@ const Sellform = () => {
                 <input type="submit"></input> */}
                 
                 <label for="care-instructions">Care Instructions:</label>
-                <textarea id="care-instructions" name="care-instructions" rows="1" required></textarea>
+                <textarea id="care-instructions" name="care-instructions" rows="1" className="textclass" required></textarea>
               
                 <label for="product-quantity">Product Quantity:</label>
-                <input type="number" id="product-quantity" name="product-quantity" min="0" required/>
+                <input type="number" id="product-quantity" name="product-quantity" min="0" className="textclass" required/>
               
                 <label for="image-upload">Image Upload:</label>
-                <input type="file" id="image-upload" name="image-upload" required/>
+                <input type="file" id="image-upload" name="image-upload" className="textclass" required/>
 
               </form>
             </div>
             <div className="p2">
-                <h1>Seller Information</h1>
-              <form action="" method="post">
+                <h1 className="SellerInformation">Seller Information</h1>
+              <form action="" method="post" className="form2">
                 <label for="seller-name">Name:</label>
-                <input type="text" id="seller-name" name="seller-name" required/>
+                <input type="text" id="seller-name" name="seller-name" className="textclass" required/>
               
                 <label for="seller-mobile">Mobile:</label>
-                <input type="tel" id="seller-mobile" name="seller-mobile" required/>
+                <input type="tel" id="seller-mobile" name="seller-mobile" className="textclass"required/>
               
                 <label for="pickup-address">Pickup Address:</label>
-                <textarea id="pickup-address" name="pickup-address" rows="1" required></textarea>
+                <textarea id="pickup-address" name="pickup-address" rows="1" className="textclass" required></textarea>
               
                 <label for="business-details">Business Details:</label>
-                <textarea id="business-details" name="business-details" rows="1"></textarea>
+                <textarea id="business-details" name="business-details" rows="1" className="textclass" ></textarea>
               
                 <label for="shipping-payment-details">Shipping and Payment Details:</label>
-                <textarea id="shipping-payment-details" name="shipping-payment-details" rows="1" required></textarea>
+                <textarea id="shipping-payment-details" name="shipping-payment-details" rows="1" className="textclass" required></textarea>
               
                 <label for="refund-policy">Refund Policy:</label>
-                <textarea id="refund-policy" name="refund-policy" rows="1" required></textarea>
+                <textarea id="refund-policy" name="refund-policy" rows="1" className="textclass" required></textarea>
                 <input type="submit" value="Submit"/>
               </form>
             </div>
