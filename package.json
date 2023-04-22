@@ -1,7 +1,5 @@
 {
   "dependencies": {
-    "node-sass": "^8.0.0",
-    "react-icons": "^4.8.0",
-    "react-router-dom": "^6.10.0"
+    "react-icons": "^4.8.0"
   }
 }
