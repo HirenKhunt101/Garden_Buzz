@@ -14,16 +14,19 @@ import Content from "./Controllers/Content/Content";
 import Footer from "./Controllers/Footer/Footer"
 import Sellform from "./Controllers/Sellform/Sellform";
 import Login from "./Controllers/Login/Login";
+import Register from "./Controllers/Register/SellerRegister";
 
 
 function App() {
 
-  return (
+  return ( 
     <BrowserRouter>
       <Routes>
         <Route path="home" element={<div className="home"><Navbar /><Content /><Footer /></div>} />
+        <Route path="/" element={<div className="home"><Navbar /><Content /><Footer /></div>} />
         <Route path="Sellform" element={<div className="Sellform"><><Navbar /><Sellform /><Footer /></></div>} />
         <Route path="login" element={<div className="Login"><><Login /></></div>} />
+        <Route path="register" element={<div className="Register"><><Register /></></div>} />
       </Routes>
     </BrowserRouter>
 

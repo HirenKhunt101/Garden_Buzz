@@ -1,24 +1,98 @@
+// import React, { useState } from "react";
+// import { Link } from "react-router-dom";
+
+// const Register = () => {
+
+//     const [name, setName] = useState('')
+//     const [email, setEmail] = useState('')
+//     const [password, setPassword] = useState('')
+
+// async function registerUser(event) {
+//     event.preventDefault()
+
+//     const response = await fetch('http://localhost:4200/add_seller_detail', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({
+//             name,
+//             email,
+//             password,
+//         }),
+//     })
+
+//     const data = await response.json()
+
+//     if (data.status === 'ok') {
+//         console.log("Data Add successfully");
+//         // history.push('/Register')
+//     }
+// }
+
+//     return (
+//     <div>
+//     <h1>Register</h1>
+//     <form onSubmit={registerUser}>
+//         <input
+//             value={name}
+//             onChange={(e) => setName(e.target.value)}
+//             type="text"
+//             placeholder="Name"
+//         />
+//         <br />
+//         <input
+//             value={email}
+//             onChange={(e) => setEmail(e.target.value)}
+//             type="email"
+//             placeholder="Email"
+//         />
+//         <br />
+//         <input
+//             value={password}
+//             onChange={(e) => setPassword(e.target.value)}
+//             type="password"
+//             placeholder="Password"
+//         />
+//         <br />
+//         <input type="submit" value="Register" />
+//     </form>
+// </div>
+//   );
+// };
+
+// export default Register;
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./login.css";
-// import Register from "../Register/SellerRegister";
+import "./../Login/login.css";
 
-const Login = () => {
+const Register = () => {
+  const [nurseryname, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [contactnumber, setContact] = useState("");
+  const [address, setAddress] = useState("");
+  const [pincode, setPincode] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  async function LoginVerify(event) {
+  async function registerUser(event) {
     event.preventDefault();
 
     const response = await fetch(
-      "http://localhost:4200/gardenbuzz/login_verify",
+      "http://localhost:4200/gardenbuzz/add_seller_detail",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          nurseryname,
           email,
+          contactnumber,
+          address,
+          pincode,
+          username,
           password,
         }),
       }
@@ -26,21 +100,11 @@ const Login = () => {
 
     const data = await response.json();
 
-    // if (data.status === "ok") {
-    //   console.log("User login successfully");
-    //   history.push("/Register");
-    // }
-
     if (data.status === "ok") {
-      localStorage.setItem("token", data.data);
-      alert("Login successful");
-      window.location.href = "/home";
-    } else {
-      alert("Please check your username and password");
+      console.log("Data Add successfully");
+      // history.push('/Register')
     }
   }
-
-  //   const history = useHistory();
 
   return (
     <>
@@ -144,20 +208,26 @@ const Login = () => {
             style={{ flexGrow: 1, zIndex: 9 }}
           >
             <div className="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
-              <h1>
-                <Link to="http://blog.stackfindover.com/" rel="dofollow"></Link>
-                GardenBuzz
-              </h1>
+              <h1>GardenBuzz</h1>
             </div>
             <div className="formbg-outer">
               <div className="formbg">
                 <div className="formbg-inner padding-horizontal--48">
                   <span className="padding-bottom--15">
-                    Sign in to your account
+                    Register your account
                   </span>
-                  <form id="stripe-login" onSubmit={LoginVerify}>
+                  <form onSubmit={registerUser} id="stripe-login">
                     <div className="loginp1">
                       <div className="field padding-bottom--24">
+                        <label htmlFor="name">Nursery Name:</label>
+                        <input
+                          value={nurseryname}
+                          onChange={(e) => setName(e.target.value)}
+                          type="text"
+                          placeholder="Nursery Name"
+                          required
+                        />
+
                         <label htmlFor="email">Email:</label>
                         <input
                           value={email}
@@ -166,34 +236,62 @@ const Login = () => {
                           placeholder="email"
                           required
                         />
-                      </div>
-                      <div className="field padding-bottom--24">
-                        <div className="grid--50-50">
-                          <label htmlFor="password">Password</label>
-                          <div className="reset-pass">
-                            <Link to="#">Forgot your password?</Link>
-                          </div>
-                        </div>
+
+                        <label htmlFor="contactnumber">Contact Number:</label>
+                        <input
+                          value={contactnumber}
+                          onChange={(e) => setContact(e.target.value)}
+                          type="tel"
+                          placeholder="contact number"
+                          required
+                        />
+
+                        <label htmlFor="password">Address:</label>
+                        <input
+                          value={address}
+                          onChange={(e) => setAddress(e.target.value)}
+                          type="text"
+                          placeholder="address"
+                          rows="3"
+                        />
+
+                        <label htmlFor="pincode">Pincode:</label>
+                        <input
+                          value={pincode}
+                          onChange={(e) => setPincode(e.target.value)}
+                          type="text"
+                          placeholder="pincode"
+                          pattern="[0-9]{6}"
+                          maxLength="6"
+                        />
+
+                        <label htmlFor="username">Username:</label>
+                        <input
+                          value={username}
+                          onChange={(e) => setUsername(e.target.value)}
+                          type="text"
+                          placeholder="username"
+                        />
+
+                        <label htmlFor="password">Password:</label>
                         <input
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           type="password"
                           placeholder="password"
-                          required
                         />
+
+                        <div className="reset-pass">
+                          <Link to="#">Login?</Link>
+                        </div>
                       </div>
                     </div>
-                    <div className="field field-checkbox padding-bottom--24 flex-flex align-center">
-                      <label htmlFor="checkbox">
-                        <input type="checkbox" name="checkbox" /> Stay signed in
-                        for a week
-                      </label>
-                    </div>
+
                     <div className="field padding-bottom--24">
                       <input
                         type="submit"
                         name="submit"
-                        value="Continue"
+                        value="Register"
                         required
                       />
                     </div>
@@ -229,4 +327,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
