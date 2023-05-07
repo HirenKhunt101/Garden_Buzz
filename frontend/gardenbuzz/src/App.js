@@ -15,7 +15,8 @@ import Footer from "./Controllers/Footer/Footer"
 import Sellform from "./Controllers/Sellform/Sellform";
 import Login from "./Controllers/Login/Login";
 import Register from "./Controllers/Register/SellerRegister";
-
+import Upload from "./Controllers/uploadFiles/sellerProducts";
+import AddImage from "./Controllers/uploadFiles/addImage";
 
 function App() {
 
@@ -25,6 +26,8 @@ function App() {
         <Route path="home" element={<div className="home"><Navbar /><Content /><Footer /></div>} />
         <Route path="/" element={<div className="home"><Navbar /><Content /><Footer /></div>} />
         <Route path="Sellform" element={<div className="Sellform"><><Navbar /><Sellform /><Footer /></></div>} />
+        <Route path="addImage" element={<div className="addImage"><><Navbar /><AddImage/><Footer /></></div>} />
+        <Route path="Upload" element={<div className="Upload"><><Navbar /><Upload /><Footer /></></div>} />
         <Route path="login" element={<div className="Login"><><Login /></></div>} />
         <Route path="register" element={<div className="Register"><><Register /></></div>} />
       </Routes>

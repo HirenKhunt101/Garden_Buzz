@@ -334,7 +334,7 @@ const Content = () => {
                         {/* <div className="buysell__card"> */}
                             <div className="buttoncontainer">
                                 {/* <a href="/Sellform" class="sellbtn">WANT TO SELL</a> */}
-                                <Link to="/sellform" class="sellbtn">WANT TO SELL</Link>
+                                <Link to="/Upload" class="sellbtn">WANT TO SELL</Link>
                             </div>
                         {/* </div> */}
                         

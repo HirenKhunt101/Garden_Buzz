@@ -27,3 +27,23 @@ const Seller_detail = new mongoose.Schema({
 
 const SellerDetail = mongoose.model("seller_detail", Seller_detail);
 module.exports.seller_detail = SellerDetail;
+
+
+const Product_detail = new mongoose.Schema({
+  Name: String,
+  Price: Number,
+  Description: String,
+  PotColor: String,
+  CareInstructions: String,
+  ProductQuantity: Number,
+  ImageURL: String,
+});
+ 
+const Productdetail = mongoose.model("product_detail", Product_detail);
+module.exports.product_detail = Productdetail;
+
+
+
+
+
+
