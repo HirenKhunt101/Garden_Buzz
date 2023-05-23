@@ -6,6 +6,7 @@ const Footer = () => {
     <>  
       {/* <!--==================== FOOTER ====================--> */}
         <footer class="footer section">
+            <hr />
             <div class="footer__container container grid">
                 <div class="footer__content">
                     <a href="#" class="footer__logo">
@@ -30,9 +31,9 @@ const Footer = () => {
                     <h3 class="footer__title">Our Address</h3>
 
                     <ul class="footer__data">
-                        <li class="footer__information">1234 - Peru</li>
-                        <li class="footer__information">La Libertad - 43210</li>
-                        <li class="footer__information">123-456-789</li>
+                        <li class="footer__information">SP Hostel, Gulbai Tekra</li>
+                        <li class="footer__information"> Navrangpura</li>
+                        <li class="footer__information">Ahmedabad - 380006</li>
                     </ul>
                 </div>
 
@@ -40,7 +41,7 @@ const Footer = () => {
                     <h3 class="footer__title">Contact Us</h3>
 
                     <ul class="footer__data">
-                        <li class="footer__information">+999 888 777</li>
+                        <li class="footer__information">+916351869907</li>
                         
                         <div class="footer__social">
                             <a href="https://www.facebook.com/" class="footer__social-link">

@@ -393,6 +393,7 @@ the website, in dark theme
   display: inline-flex;
   align-items: center;
   column-gap: .5rem;
+  margin-left: 3rem;
 }
 
 .button--link{
@@ -642,7 +643,7 @@ the website, in dark theme
 
 .buysell__container{
   gap: 2rem;
-  padding-top: 1rem;
+  padding-top: 0rem;
 }
 
 .buysell__title{
@@ -1063,7 +1064,7 @@ the website, in dark theme
     column-gap: 3rem;
   }
   .footer__subscribe{
-    width: initial;
+    width: 110%;
   }
 }
 
@@ -1080,6 +1081,11 @@ the website, in dark theme
   .section__title,
   .section__title-center{
     font-size: var(--h1-font-size);
+    background-color: hsl( 152 , 24%, 32%);
+    text-transform: uppercase;
+    padding: 20px 0px;
+    border-radius: 10px;
+    color: white;
   }
 
   .home{
@@ -1089,7 +1095,7 @@ the website, in dark theme
     width: 350px;
   }
   .home__description{
-    padding-right: 7rem;
+    padding-left: 4rem;
   }
 
   .about__img{
@@ -1112,7 +1118,7 @@ the website, in dark theme
   }
 
   .product__description{
-    padding: 0 16rem;
+    padding: 0rem 10rem;
   }
   .product__container{
     padding: 4rem 0;
@@ -1135,7 +1141,7 @@ the website, in dark theme
     padding: 1rem 0 4rem;
   }
   .questions__title{
-    text-align: initial;
+    text-align: center;
   }
   .questions__group{
     row-gap: 2rem;

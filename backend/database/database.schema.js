@@ -1,15 +1,9 @@
 const mongoose = require("mongoose");
 
 const User_Schema = new mongoose.Schema({
-  name: {
-    type: String,
-  },
-  email: {
-    type: String,
-  },
-  password: {
-    type: String,
-  },
+  name: String,
+  email: String,
+  password: String,
 });
 
 const User = mongoose.model("user", User_Schema);
@@ -41,6 +35,22 @@ const Product_detail = new mongoose.Schema({
  
 const Productdetail = mongoose.model("product_detail", Product_detail);
 module.exports.product_detail = Productdetail;
+
+const Cart_detail = new mongoose.Schema({
+  UserId: String,
+  ProductId: {
+    type: "ObjectId",
+    ref: 'Productdetail',
+  },
+  Quantity: {
+    type: String,
+    default: 1
+  },
+  PotColor: String,
+});
+ 
+const Cartdetail = mongoose.model("cart_detail", Cart_detail);
+module.exports.cart_detail = Cartdetail;
 
 
 

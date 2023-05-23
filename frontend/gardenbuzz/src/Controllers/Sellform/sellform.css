@@ -137,7 +137,7 @@ h2 {
     padding: 0 4rem;
   }
   .product__container{
-    grid-template-columns: repeat(2, 170px);
+    grid-template-columns: repeat(3, 170px);
     justify-content: center;
     column-gap: 5rem;
   }
@@ -198,7 +198,7 @@ h2 {
     column-gap: 3rem;
   }
   .footer__subscribe{
-    width: initial;
+    width: 337px;
   }
 }
 
@@ -251,7 +251,7 @@ h2 {
   }
   .product__container{
     padding: 4rem 0;
-    grid-template-columns: repeat(3, 185px);
+    grid-template-columns: repeat(4, 185px);
     gap: 4rem 6rem;
   }
   .product__img{
@@ -270,7 +270,7 @@ h2 {
     padding: 1rem 0 4rem;
   }
   .questions__title{
-    text-align: initial;
+    text-align: center;
   }
   .questions__group{
     row-gap: 2rem;

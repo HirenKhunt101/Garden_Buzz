@@ -12,6 +12,7 @@
   .imageContainer{
     display: flex;
     flex-wrap: wrap;
+    margin: 0px 84px;
   }
   
   .productCard{
