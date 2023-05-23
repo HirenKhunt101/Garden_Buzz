@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const schema = require("./../database/database.schema");
 const mongo = require("./../database/database.service");
 const nodemailer = require("nodemailer");
-
 const SellerDetail = schema.seller_detail;
+const ProductDetail = schema.product_detail;
 
 let add_seller_detail = async function (req, res) {
   let body = req.body;
@@ -103,7 +103,52 @@ let forgot_password = async function (req, res) {
   }
 };
 
+
+let add_product = async function (req, res) {
+  let body = req.body;
+  try {
+    
+    let product_detail = new ProductDetail();
+    product_detail.Name = body.Name
+    product_detail.Price = body.Price
+    product_detail.Description = body.Description
+    product_detail.PotColor = body.PotColor
+    product_detail.CareInstructions = body.CareInstructions
+    product_detail.ProductQuantity = body.ProductQuantity
+    product_detail.ImageURL = body.ImageURL
+   
+    product_detail.save();
+    res.json({
+      status: "ok",
+      message: "product added successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({ status: "error" });
+  }
+};
+
+let get_seller_products = async function (req, res) {
+  let body = req.body;
+  try {
+   
+    let products = await ProductDetail.find({});
+    res.json({
+      status: "ok",
+      data: products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({ status: "error" });
+  }
+};
+
+
 module.exports = {
   add_seller_detail: add_seller_detail,
   login_verify: login_verify,
+  forgot_password: forgot_password,
+  add_product: add_product,
+  get_seller_products: get_seller_products
+
 };

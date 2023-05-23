@@ -1066,3 +1066,8 @@ the website, in dark theme
     right: 3rem;
   }
 }
+
+.logo_img{
+  width: 50px;
+  height: 50px;
+}
