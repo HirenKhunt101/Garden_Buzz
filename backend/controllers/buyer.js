@@ -79,8 +79,26 @@ let get_cart_details = async function (req, res) {
   }
 };
 
+let update_cart_product_quantity = async function (req, res) {
+  let body = req.body;
+  try {
+    await CartDetail.updateOne(
+      { ProductId: body.ProductId },
+      { Quantity: body.Quantity }
+    );
+    res.json({
+      message: "Product Quantity Updated Successfully",
+      status: "ok",
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({ status: "error" });
+  }
+};
+
 module.exports = {
   add_product_in_cart: add_product_in_cart,
   remove_product_from_cart: remove_product_from_cart,
   get_cart_details: get_cart_details,
+  update_cart_product_quantity: update_cart_product_quantity,
 };

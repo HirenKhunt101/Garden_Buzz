@@ -105,9 +105,24 @@ function Cart() {
     window.location.href = "/Cart";
   };
 
-  const handleIncrement = (productId) => {
+  const handleIncrement = async (productId) => {
     const updatedCartItems = productData.map((item) => {
       if (item._id === productId) {
+        let body = {
+          ProductId: productId,
+          Quantity: Number(item.ProductQuantity) + 1,
+        };
+        const response = fetch(
+          "http://localhost:4200/gardenbuzz/update_cart_product_quantity",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
+          }
+        );
+        setPrice(price + item.Price);
         return {
           ...item,
           ProductQuantity: Number(item.ProductQuantity) + 1,
@@ -123,6 +138,20 @@ function Cart() {
     const updatedCartItems = productData.map((item) => {
       if (item._id === productId) {
         if (Number(item.ProductQuantity) > 1) {
+          let body = {
+            ProductId: productId,
+            Quantity: Number(item.ProductQuantity) - 1,
+          };
+          const response = fetch(
+            "http://localhost:4200/gardenbuzz/update_cart_product_quantity",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(body),
+            }
+          );
           return {
             ...item,
             ProductQuantity: Number(item.ProductQuantity) - 1,
@@ -155,7 +184,7 @@ function Cart() {
                 />
                 <div className="productDetails">
                   <h3>Name: {product.Name}</h3>
-                  <p>Price: ${product.Price}</p>
+                  <p>Price: ${product.Price * product.ProductQuantity}</p>
                   {/* <p>Quantity: {product.ProductQuantity}</p> */}
                   <p>
                     Quantity:

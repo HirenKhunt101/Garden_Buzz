@@ -412,7 +412,7 @@ const Content = () => {
 
               {/* <div className="buysell__card">  */}
               <div className="buttoncontainer">
-                <Link to="/sellform" class="sellbtn">
+                <Link to="/BuyProduct" class="sellbtn">
                   WANT TO BUY
                 </Link>
               </div>
