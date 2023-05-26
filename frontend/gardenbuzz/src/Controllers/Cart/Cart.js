@@ -131,7 +131,7 @@ function Cart() {
       return item;
     });
     setProductData(updatedCartItems);
-    console.log(updatedCartItems);
+    // console.log(updatedCartItems);
   };
 
   const handleDecrement = (productId) => {
@@ -152,6 +152,7 @@ function Cart() {
               body: JSON.stringify(body),
             }
           );
+          setPrice(price - item.Price);
           return {
             ...item,
             ProductQuantity: Number(item.ProductQuantity) - 1,
