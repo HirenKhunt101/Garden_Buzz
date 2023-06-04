@@ -302,13 +302,19 @@ the website, in dark theme
 .home{
   padding: 3.5rem 0 2rem;
 }
+.home__container-content{
+  display: flex;
+  padding: 3.5rem 0 2rem;
+  row-gap: 2rem;
+
+}
 
 .home__container{
   position: relative;
   row-gap: 2rem;
 }
 
-.home__img{
+.home-main-image{
   width: 200px;
   justify-self: center;
 }
@@ -393,7 +399,8 @@ the website, in dark theme
   display: inline-flex;
   align-items: center;
   column-gap: .5rem;
-  margin-left: 3rem;
+  margin-left: 14rem;
+  margin-top: 1rem;
 }
 
 .button--link{
@@ -968,7 +975,7 @@ the website, in dark theme
     margin-right: var(--mb-1);
   }
 
-  .home__img{
+  .home-main-image{
     width: 180px;
   }
   .home__title{
@@ -990,6 +997,9 @@ the website, in dark theme
 
 /* For medium devices */
 @media screen and (min-width: 576px){
+  .home-main-image {
+    width: 180px;
+  }
   .steps__container{
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1014,6 +1024,24 @@ the website, in dark theme
 }
 
 @media screen and (min-width: 767px){
+  
+
+  .home-main-content p{
+    padding: 5px 6rem
+  }
+  .home-main-content h1{
+    /* text-transform: capitalize; */
+    text-transform: uppercase;
+    padding: 1rem 0rem 1rem 4rem;
+    font-weight: 700;
+  }
+  .home-main{
+    display: grid;
+    grid-template-columns: 70% 30%;
+  }
+  .home-main-image {
+    width: 180px;
+  }
   body{
     margin: 0;
   }
@@ -1048,7 +1076,7 @@ the website, in dark theme
   .home__container{
     align-items: center;
   }
-  .home__img{
+  .home-main-image{
     width: 280px;
     order: 1;
   }
@@ -1070,6 +1098,30 @@ the website, in dark theme
 
 /* For large devices */
 @media screen and (min-width: 992px){
+  .home-main-content p{
+    padding: 1rem 2rem 1rem 12rem;
+  }
+  .home-main-content h1{
+    /* text-transform: capitalize; */
+    text-transform: uppercase;
+    padding: 1rem 2rem 1rem 0.3rem;
+    /* padding: auto; */
+    font-weight: 700;
+  }
+  .home-main{
+    display: grid;
+    grid-template-columns: 65% 35%;
+    max-height: 285px;
+  }
+
+  .home-main-content{
+    /* padding-left: 10px; */
+  }
+
+  .home-main-image {
+    width: 450px;
+  }
+
   .container{
     margin-left: auto;
     margin-right: auto;
@@ -1091,15 +1143,16 @@ the website, in dark theme
   .home{
     padding: 13rem 0 5rem;
   }
-  .home__img{
+  /* .home-main-image{
     width: 350px;
-  }
+  } */
   .home__description{
     padding-left: 4rem;
   }
 
   .about__img{
     width: 380px;
+    margin-top: 43px;
   }
 
   .steps__container{
@@ -1165,6 +1218,21 @@ the website, in dark theme
 }
 
 @media screen and (min-width: 1200px){
+  .home-main-content p{
+    padding: 1rem 12rem 0rem 12rem;
+  }
+  .home-main-content h1{
+    /* text-transform: capitalize; */
+    text-transform: uppercase;
+    padding: 1rem 2rem 1rem 0.3rem;
+    /* padding: auto; */
+    font-weight: 700;
+  }
+  .home-main{
+    display: grid;
+    grid-template-columns: 65% 35%;
+    max-height: 285px;
+  }
   .home__social{
     right: -3rem;
     row-gap: 4.5rem;
@@ -1189,4 +1257,7 @@ the website, in dark theme
   }
 }
 
+.border-vine{
+  display: flex;
+}
 

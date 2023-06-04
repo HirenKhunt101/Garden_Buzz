@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "./Cart.css";
 
 function Cart() {
@@ -184,8 +184,8 @@ function Cart() {
                   onError={() => handleImageError(product.ImageURL)}
                 />
                 <div className="productDetails">
-                  <h3>Name: {product.Name}</h3>
-                  <p>Price: ${product.Price * product.ProductQuantity}</p>
+                  <h3>{product.Name}</h3>
+                  <p>Price: ₹{product.Price}</p>
                   {/* <p>Quantity: {product.ProductQuantity}</p> */}
                   <p>
                     Quantity:
@@ -203,6 +203,7 @@ function Cart() {
                       +
                     </button>
                   </p>
+                  <p>Total: ₹{product.Price * product.ProductQuantity}</p>
                   <button
                     className="removeFromCart"
                     onClick={() => removeFromCart(product._id)}
@@ -238,24 +239,24 @@ function Cart() {
               <div className="priceCalculation">
                 <div className="priceCalculationItem">
                   <span className="itemName">Price:</span>
-                  <span className="itemValue">{price}</span>
+                  <span className="itemValue">₹{price}</span>
                 </div>
                 <div className="priceCalculationItem">
                   <span className="itemName">Discount:</span>
-                  <span className="itemValue">{discount}</span>
+                  <span className="itemValue">₹{price % 100}</span>
                 </div>
                 <div className="priceCalculationItem">
                   <span className="itemName">Delivery Charges:</span>
-                  <span className="itemValue">{deliveryCharges}</span>
+                  <span className="itemValue">₹{deliveryCharges}</span>
                 </div>
                 <div className="priceCalculationItem">
                   <span className="itemName">Secured Packaging Fee:</span>
-                  <span className="itemValue">{packagingFee}</span>
+                  <span className="itemValue">₹{packagingFee}</span>
                 </div>
                 <div className="priceCalculationItem">
                   <span className="itemName">Total:</span>
                   <span className="itemValue">
-                    {price - discount + packagingFee + deliveryCharges}
+                    ₹{price - (price % 100) + packagingFee + deliveryCharges}
                   </span>
                 </div>
               </div>

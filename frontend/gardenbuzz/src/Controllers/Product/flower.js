@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./BuyProduct.css";
+import "./plant.css";
 
-function BuyProduct() {
+function Flower() {
   const [imageMap, setImageMap] = useState({});
   const [productData, setProductData] = useState([]);
   const [cartItems, setCartItems] = useState([]);
@@ -26,15 +26,15 @@ function BuyProduct() {
             },
             body: JSON.stringify({
               // imageUrls: Object.keys(imageMap),
-              Category: "plant",
+              Category: "flower",
             }),
           }
         );
         const data = await response.json();
         setProductData(data.data);
-        console.log(data.data);
+        // console.log(data.data);
       } catch (error) {
-        console.error("Error fetching product data:", error);
+        // console.error("Error fetching product data:", error);
       }
     };
 
@@ -53,10 +53,10 @@ function BuyProduct() {
           }
         );
         const CartData = await response1.json();
-        console.log(CartData.data);
+        // console.log(CartData.data);
         setCartItems(CartData.data);
       } catch (error) {
-        console.error("Error in fetching product data:", error);
+        // console.error("Error in fetching product data:", error);
       }
     };
 
@@ -79,7 +79,7 @@ function BuyProduct() {
         }),
       }
     );
-    console.log(response);
+    // console.log(response);
     if (response.ok) {
       alert("Product added successfully!");
     }
@@ -91,7 +91,7 @@ function BuyProduct() {
 
   const removeFromCart = async (productId) => {
     setCartItems(cartItems.filter((item) => item._id !== productId));
-    console.log(123);
+    // console.log(123);
     let body = JSON.stringify({
       ProductId: productId,
     });
@@ -105,7 +105,7 @@ function BuyProduct() {
         body: body,
       }
     );
-    console.log(response);
+    // console.log(response);
     if (response.ok) {
       alert("Product Removed successfully!");
     }
@@ -133,19 +133,25 @@ function BuyProduct() {
   };
   const sortByNewest = function () {
     const sortedProducts = [...productData].sort((product1, product2) => {
-      return product2.CreatedAt - product1.CreatedAt;
+      // console.log(new Date(product2.CreatedAt), new Date(product1.CreatedAt));
+      return new Date(product2.CreatedAt) - new Date(product1.CreatedAt);
     });
     setProductData(sortedProducts);
   };
   const sortByPopularity = function () {
     const sortedProducts = [...productData].sort((product1, product2) => {
-      return product1.CreatedAt - product2.CreatedAt;
+      return new Date(product1.CreatedAt) - new Date(product2.CreatedAt);
     });
     setProductData(sortedProducts);
   };
 
-  // console.log("productData" + JSON.stringify(productData));
+  const getRandomNumber = function (Price) {
+    return (Price % 39) + 10;
+    return Math.floor(Math.random() * 50 + 1);
+  };
 
+  // // console.log("productData" + JSON.stringify(productData));
+ 
   return (
     <>
       <div className="productContant">
@@ -179,9 +185,15 @@ function BuyProduct() {
                     onError={() => handleImageError(product.ImageURL)}
                   />
                   <div className="productDetails">
-                    <h3>Name: {product.Name}</h3>
-                    <p>Price: ${product.Price}</p>
-                    <p>Quantity: {product.ProductQuantity}</p>
+                    <h3>{product.Name}</h3>
+                    <p style={{ color: "green" }}>
+                      {getRandomNumber(product.Price)}% off
+                    </p>
+                    <p>Price: ₹{product.Price}</p>
+                    {/* <p>Quantity: {product.ProductQuantity}</p> */}
+                    <a href="#" class="moreInfo">
+                      More Information
+                    </a>
                     {product.Price >= 500 && <p>Free delivery </p>}
                     {!isProductInCart(product._id) && (
                       <button
@@ -212,4 +224,4 @@ function BuyProduct() {
   );
 }
 
-export default BuyProduct;
+export default Flower;

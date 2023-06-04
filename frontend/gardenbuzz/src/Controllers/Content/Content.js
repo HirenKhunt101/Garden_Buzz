@@ -13,49 +13,57 @@ const Content = () => {
     <>
       <main className="main">
         {/* <!--==================== HOME ====================--> */}
-        <section className="home" id="home">
-          <div className="home__container container grid">
-            <img src={require("./home.png")} alt="" className="home__img" />
+        <div className="border-vine">
+          <img
+            src={require("./../ProductImages/Vines/vine1.png")}
+            alt=""
+            className="vine_image"
+          />
+          <img
+            src={require("./../ProductImages/Vines/vine1 rotate.png")}
+            alt=""
+            className="vine_image"
+          />
+        </div>
 
-            <div className="home__data">
-              <h1 className="home__title">
-                Plants will make <br></br> your life better
-              </h1>
+        <section>
+          <div className="home-main">
+            <div className="home-main-content">
+              {/* <h1 className="home__title">Plants will make your life better</h1>
               <p className="home__description">
                 The love of gardening is a seed once sown that never dies.
+              </p> */}
+
+              <h1>The only place where you can buy or sell plants</h1>
+              <p>
+                Looking for a dedicated online platform to buy or sell plants?
               </p>
+              <p>
+                Look no further! Our website provides a convenient and secure
+                marketplace for all your plant-related needs.
+              </p>
+              <p>
+                Whether you're a passionate plant lover or a seller looking to
+                connect with plant enthusiasts, our platform offers a wide
+                selection of plants and a seamless buying and selling
+                experience.
+              </p>
+              <p>
+                Join our community today and explore the vibrant world of plant
+                commerce!
+              </p>
+
               <a href="#about" className="button button--flex">
                 Explore{" "}
                 <i className="ri-arrow-right-down-line button__icon"></i>
               </a>
             </div>
-
-            <div className="home__social">
-              <span className="home__social-follow">Follow Us</span>
-
-              <div className="home__social-links">
-                <a
-                  href="https://www.facebook.com/"
-                  target="_blank"
-                  className="home__social-link"
-                >
-                  <FaFacebookSquare className="ri-facebook-fill" />
-                </a>
-                <a
-                  href="https://www.instagram.com/"
-                  target="_blank"
-                  className="home__social-link"
-                >
-                  <FaInstagramSquare className="ri-instagram-line" />
-                </a>
-                <a
-                  href="https://youtube.com/"
-                  target="_blank"
-                  className="home__social-link"
-                >
-                  <FaYoutubeSquare className="ri-twitter-fill" />
-                </a>
-              </div>
+            <div className="home-main-img">
+              <img
+                src={require("./../ProductImages/Background/bg10.jpg")}
+                alt=""
+                className="home-main-image"
+              />
             </div>
           </div>
         </section>
@@ -412,7 +420,7 @@ const Content = () => {
 
               {/* <div className="buysell__card">  */}
               <div className="buttoncontainer">
-                <Link to="/BuyProduct" class="sellbtn">
+                <Link to="/Plant" class="sellbtn">
                   WANT TO BUY
                 </Link>
               </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import './sellerProduct.css';
+import "./sellerProduct.css";
 
 function Upload() {
   const [imageMap, setImageMap] = useState({});
@@ -15,15 +15,18 @@ function Upload() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:4200/gardenbuzz/get_seller_products", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            imageUrls: Object.keys(imageMap),
-          }),
-        });
+        const response = await fetch(
+          "http://localhost:4200/gardenbuzz/get_seller_products",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              // imageUrls: Object.keys(imageMap),
+            }),
+          }
+        );
         const data = await response.json();
         setProductData(data.data);
       } catch (error) {
@@ -39,21 +42,28 @@ function Upload() {
   return (
     <>
       <div className="buttoncontainer">
-        <Link to="/addImage" className="addImage">Add Product</Link>
+        <Link to="/addImage" className="addProduct">
+          Add Product
+        </Link>
       </div>
       <div className="productContainer">
-        <div className="imageContainer">
+        <div className="image-Container">
           {Array.isArray(productData) ? (
             productData.map((product) => (
               <div key={product.id} className="productCard">
-                <img src={product.ImageURL} alt={product.Name} className="productImage" onError={() => handleImageError(product.ImageURL)} />
+                <img
+                  src={product.ImageURL}
+                  alt={product.Name}
+                  className="productImage"
+                  onError={() => handleImageError(product.ImageURL)}
+                />
                 {/* <div className="productDetails"> */}
-                  <h3>Name: {product.Name}</h3>
-                  <p>Price: ${product.Price}</p>
-                  {/* <p>Description: {product.Description}</p>
+                <h3>{product.Name}</h3>
+                <p>Price: ${product.Price}</p>
+                {/* <p>Description: {product.Description}</p>
                   <p>Pot Color: {product.PotColor}</p>
                   <p>Care Instructions: {product.CareInstructions}</p> */}
-                  <p>Product Quantity: {product.ProductQuantity}</p>
+                <p>Product Quantity: {product.ProductQuantity}</p>
                 {/* </div> */}
               </div>
             ))

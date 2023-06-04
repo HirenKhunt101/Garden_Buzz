@@ -125,4 +125,40 @@ function AddImage() {
   );
 }
 
+
+
+// function AddImage() {
+//   const [selectedFile, setSelectedFile] = useState(null);
+  
+//   const handleFileUpload = (event) => {
+//     setSelectedFile(event.target.files[0]);
+//   };
+  
+//   const handleSubmit = async () => {
+//     const formData = new FormData();
+//     formData.append('image', selectedFile);
+
+//     try {
+//       const response = await fetch('/api/checkPlantImage', {
+//         method: 'POST',
+//         body: formData,
+//       });
+
+//       const data = await response.json();
+//       console.log(data);
+//       // Handle the response from the backend
+//     } catch (error) {
+//       console.error('Error:', error);
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <input type="file" onChange={handleFileUpload} />
+//       <button onClick={handleSubmit}>Upload and Check Image</button>
+//     </div>
+//   );
+// }
+
 export default AddImage;
+

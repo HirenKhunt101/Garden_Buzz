@@ -9,10 +9,10 @@
     border-style:hidden;
   }
   
-  .imageContainer{
+  .image-Container{
     display: flex;
     flex-wrap: wrap;
-    margin: 0px 84px;
+    margin: 20px 84px;
   }
   
   .productCard{
@@ -31,27 +31,24 @@ button:active
 }
 
 
-
-.addImage {
+  
+  
+  .addProduct {
+    text-decoration: none;
+    border: 1px solid rgb(20, 20, 21);
+    position: relative;
+    overflow: hidden;
     font-size: 1.5rem;
     padding: 1rem 3rem;
     color: #2b458a;
     text-transform: uppercase;
-  }
-  
-  
-  .addImage {
-    text-decoration: none;
-    border: 1px solid rgb(146, 148, 248);
-    position: relative;
-    overflow: hidden;
   } 
   
-  .addImage:hover {
+  .addProduct:hover {
     box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);
   }
   
-  .addImage:before {
+  .addProduct:before {
     content: "";
     position: absolute;
     top: 0;
@@ -67,7 +64,7 @@ button:active
     transition: all 650ms;
   }
   
-  .addImage:hover:before {
+  .addProduct:hover:before {
     left: 100%;
   }
 

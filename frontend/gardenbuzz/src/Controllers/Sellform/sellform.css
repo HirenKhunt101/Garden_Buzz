@@ -1,5 +1,4 @@
-
-    /* CSS for the form */
+/* CSS for the form */
 form {
   background-color: var(--first-color-lighten);
   display: grid;
@@ -14,12 +13,13 @@ form {
   overflow: hidden;
 }
 
-body{
+body {
   padding-top: 90px;
 }
 
 
-h1, h2 {
+h1,
+h2 {
   text-align: center;
 }
 
@@ -33,7 +33,11 @@ label {
 }
 
 
-input[type="text"], input[type="number"], input[type="tel"], textarea, select {
+input[type="text"],
+input[type="number"],
+input[type="tel"],
+textarea,
+select {
   display: block;
   margin-top: 5px;
   margin-bottom: 20px;
@@ -87,7 +91,7 @@ h2 {
   margin-top: 10px;
 }
 
-.sellform__container{
+.sellform__container {
   grid-template-columns: repeat(2, 5fr);
   position: relative;
 }
@@ -96,75 +100,81 @@ h2 {
 
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
-@media screen and (max-width: 320px){
-  .container{
+@media screen and (max-width: 320px) {
+  .container {
     margin-left: var(--mb-1);
     margin-right: var(--mb-1);
   }
 
-  .home__img{
+  .home__img {
     width: 180px;
   }
-  .home__title{
+
+  .home__title {
     font-size: var(--h1-font-size);
   }
 
-  .steps__bg{
+  .steps__bg {
     padding: 2rem 1rem;
   }
-  .steps__card{
+
+  .steps__card {
     padding: 1.5rem;
   }
 
-  .product__container{
+  .product__container {
     grid-template-columns: .6fr;
     justify-content: center;
   }
 }
 
 /* For medium devices */
-@media screen and (min-width: 576px){
-  .steps__container{
+@media screen and (min-width: 576px) {
+  .steps__container {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .buysell__container{
+  .buysell__container {
     grid-template-columns: repeat(1, 1fr);
   }
-  
 
-  .product__description{
+
+  .product__description {
     padding: 0 4rem;
   }
-  .product__container{
+
+  .product__container {
     grid-template-columns: repeat(3, 170px);
     justify-content: center;
     column-gap: 5rem;
   }
 
-  .footer__subscribe{
+  .footer__subscribe {
     width: 400px;
   }
 }
 
-@media screen and (min-width: 767px){
-  body{
+@media screen and (min-width: 767px) {
+  body {
     margin: 0;
   }
 
-  .nav{
+  .nav {
     height: calc(var(--header-height) + 1.5rem);
     column-gap: 3rem;
   }
+
   .nav__toggle,
-  .nav__close{
+  .nav__close {
     display: none;
   }
-  .nav__list{
+
+  .nav__list {
     flex-direction: row;
     column-gap: 3rem;
   }
-  .nav__menu{
+
+  .nav__menu {
     margin-left: auto;
   }
 
@@ -172,151 +182,169 @@ h2 {
   .about__container,
   .questions__container,
   .contact__container,
-  .footer__container{
+  .footer__container {
     grid-template-columns: repeat(2, 1fr);
   }
-  
-  .home{
-    padding: 3rem 0 5rem;
+
+  .home {
+    padding: 0rem 0 5rem;
   }
-  .home__container{
+
+  .home__container {
     align-items: center;
   }
-  .home__img{
+
+  .home__img {
     width: 280px;
     order: 1;
   }
-  .home__social{
+
+  .home__social {
     top: 30%;
   }
 
-  .questions__container{
+  .questions__container {
     align-items: flex-start;
   }
 
-  .footer__container{
+  .footer__container {
     column-gap: 3rem;
   }
-  .footer__subscribe{
+
+  .footer__subscribe {
     width: 337px;
   }
 }
 
 /* For large devices */
-@media screen and (min-width: 992px){
-  .container{
+@media screen and (min-width: 992px) {
+  .container {
     margin-left: auto;
     margin-right: auto;
   }
 
-  .section{
-    padding: 8rem 0 1rem;
+  .section {
+    padding: 9.3rem 0 1rem;
   }
+
   .section__title,
-  .section__title-center{
+  .section__title-center {
     font-size: var(--h1-font-size);
   }
 
-  .home{
-    padding: 3rem 0 5rem;
+  .home {
+    padding: 0rem 0 5rem;
   }
-  .home__img{
+
+  .home__img {
     width: 350px;
   }
-  .home__description{
+
+  .home__description {
     padding-right: 7rem;
   }
 
-  .about__img{
+  .about__img {
     width: 380px;
   }
 
-  .steps__container{
+  .steps__container {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .buysell__container{
+  .buysell__container {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .steps__bg{
+  .steps__bg {
     padding: 3.5rem 2.5rem;
   }
-  .steps__card-title{
+
+  .steps__card-title {
     font-size: var(--normal-font-size);
   }
 
-  .product__description{
-    padding: 0 16rem;
+  .product__description {
+    padding: 0 10rem;
   }
-  .product__container{
+
+  .product__container {
     padding: 4rem 0;
     grid-template-columns: repeat(4, 185px);
     gap: 4rem 6rem;
   }
-  .product__img{
+
+  .product__img {
     width: 160px;
   }
-  .product__circle{
+
+  .product__circle {
     width: 110px;
     height: 110px;
   }
+
   .product__title,
-  .product__price{
+  .product__price {
     font-size: var(--normal-font-size);
   }
 
-  .questions__container{
+  .questions__container {
     padding: 1rem 0 4rem;
   }
-  .questions__title{
+
+  .questions__title {
     text-align: center;
   }
-  .questions__group{
+
+  .questions__group {
     row-gap: 2rem;
   }
-  .questions__header{
+
+  .questions__header {
     padding: 1rem;
   }
-  .questions__description{
+
+  .questions__description {
     padding: 0 3.5rem 2.25rem 2.75rem;
   }
 
-  .footer__logo{
+  .footer__logo {
     font-size: var(--h3-font-size);
   }
-  .footer__container{
+
+  .footer__container {
     grid-template-columns: 1fr .5fr .5fr .5fr;
   }
-  .footer__copy{
+
+  .footer__copy {
     margin: 7rem 0 2rem;
   }
 }
 
-@media screen and (min-width: 1200px){
-  .home__social{
+@media screen and (min-width: 1200px) {
+  .home__social {
     right: -3rem;
     row-gap: 4.5rem;
   }
-  .home__social-follow{
+
+  .home__social-follow {
     font-size: var(--small-font-size);
   }
-  .home__social-follow::after{
+
+  .home__social-follow::after {
     width: 1.5rem;
     right: -60%;
   }
-  .home__social-link{
+
+  .home__social-link {
     font-size: 1.15rem;
   }
 
-  .about__container{
+  .about__container {
     column-gap: 7rem;
   }
 
-  .scrollup{
+  .scrollup {
     right: 3rem;
   }
 }
-
-
-

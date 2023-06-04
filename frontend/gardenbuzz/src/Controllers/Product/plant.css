@@ -82,6 +82,7 @@ button:active
 .imageContainer {
   display: flex;
   flex-wrap: wrap;
+  margin: 0px 77px
 }
 
 .productCard {

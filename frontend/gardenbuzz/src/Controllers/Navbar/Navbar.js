@@ -5,6 +5,12 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [activeLink, setActiveLink] = useState("Home");
+
+  const handleLinkClick = (link) => {
+    setActiveLink(link);
+  };
+
   return (
     <>
       {/* <script src="/Controllers/main.js" type="text/javascript" /> */}
@@ -22,34 +28,113 @@ const Navbar = () => {
           <div className="nav__menu" id="nav-menu">
             <ul className="nav__list">
               <li className="nav__item">
-                <a href="/" className="nav__link active-link">
+                <a
+                  href="/"
+                  className={`nav__link ${
+                    activeLink === "Home" ? "active-link" : ""
+                  }`}
+                  onClick={() => handleLinkClick("Home")}
+                >
                   Home
                 </a>
               </li>
               <li className="nav__item">
-                <a href="/" className="nav__link">
-                  About
-                </a>
+                <Link
+                  to="/Plant"
+                  className={`nav__link ${
+                    activeLink === "Plant" ? "active-link" : ""
+                  }`}
+                  onClick={() => handleLinkClick("Plant")}
+                >
+                  Plant
+                </Link>
               </li>
+
               <li className="nav__item">
-                {/* <a href="#products" className="nav__link">Products</a> */}
-                <Link to="/BuyProduct" className="nav__link">
-                  Products
+                <Link
+                  to="/Flower"
+                  className={`nav__link ${
+                    activeLink === "Flower" ? "active-link" : ""
+                  }`}
+                  onClick={() => handleLinkClick("Flower")}
+                >
+                  Flower
                 </Link>
               </li>
               <li className="nav__item">
-                <a href="#faqs" className="nav__link">
+                <Link
+                  to="/Vine"
+                  className={`nav__link ${
+                    activeLink === "Vine" ? "active-link" : ""
+                  }`}
+                  onClick={() => handleLinkClick("Vine")}
+                >
+                  Vine
+                </Link>
+              </li>
+              <li className="nav__item">
+                <Link
+                  to="/PlantCareProduct"
+                  className={`nav__link ${
+                    activeLink === "Plant Care" ? "active-link" : ""
+                  }`}
+                  onClick={() => handleLinkClick("Plant Care")}
+                >
+                  Plant Care
+                </Link>
+              </li>
+              <li className="nav__item">
+                <Link
+                  to="/Fertilizer"
+                  className={`nav__link ${
+                    activeLink === "Fertilizer" ? "active-link" : ""
+                  }`}
+                  onClick={() => handleLinkClick("Fertilizer")}
+                >
+                  Fertilizer
+                </Link>
+              </li>
+              {/* <li className="nav__item">
+                <a
+                  href="/"
+                  className={`nav__link ${
+                    activeLink === "About" ? "active-link" : ""
+                  }`}
+                  onClick={() => handleLinkClick("About")}
+                >
+                  About
+                </a>
+              </li> */}
+              {/* <li className="nav__item">
+                <a
+                  href="#faqs"
+                  className={`nav__link ${
+                    activeLink === "FAQs" ? "active-link" : ""
+                  }`}
+                  onClick={() => handleLinkClick("FAQs")}
+                >
                   FAQs
                 </a>
               </li>
               <li className="nav__item">
-                <a href="#contact" className="nav__link">
+                <a
+                  href="#contact"
+                  className={`nav__link ${
+                    activeLink === "Contact" ? "active-link" : ""
+                  }`}
+                  onClick={() => handleLinkClick("Contact")}
+                >
                   Contact Us
                 </a>
-              </li>
+              </li> */}
               <li className="nav__item">
-                {/* <a href="#products" className="nav__link">Products</a> */}
-                <Link to="/Cart" className="nav__link">
+                <Link
+                  to="/Cart"
+                  className={`nav__link ${
+                    activeLink === "Cart" ? "active-link" : ""
+                  }`}
+                  onClick={() => handleLinkClick("Cart")}
+                >
                   Cart
                 </Link>
               </li>

@@ -2,8 +2,15 @@ const mongoose = require("mongoose");
 const schema = require("./../database/database.schema");
 const mongo = require("./../database/database.service");
 const nodemailer = require("nodemailer");
+const multer = require('multer');
+const fs = require('fs');
+const vision = require('@google-cloud/vision');
 const SellerDetail = schema.seller_detail;
 const ProductDetail = schema.product_detail;
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+const client = new vision.ImageAnnotatorClient();
 
 let add_seller_detail = async function (req, res) {
   let body = req.body;
@@ -109,14 +116,14 @@ let add_product = async function (req, res) {
   try {
     
     let product_detail = new ProductDetail();
-    product_detail.Name = body.Name
-    product_detail.Price = body.Price
-    product_detail.Description = body.Description
-    product_detail.PotColor = body.PotColor
-    product_detail.CareInstructions = body.CareInstructions
-    product_detail.ProductQuantity = body.ProductQuantity
-    product_detail.ImageURL = body.ImageURL
-   
+    product_detail.Name = body.Name;
+    product_detail.Price = body.Price;
+    product_detail.Description = body.Description;
+    product_detail.Category = body.Category;
+    product_detail.CareInstructions = body.CareInstructions;
+    product_detail.ProductQuantity = body.ProductQuantity;
+    product_detail.ImageURL = body.ImageURL;
+
     product_detail.save();
     res.json({
       status: "ok",
@@ -131,8 +138,14 @@ let add_product = async function (req, res) {
 let get_seller_products = async function (req, res) {
   let body = req.body;
   try {
-   
-    let products = await ProductDetail.find({});
+    let products;
+    if (body.Category) {
+      products = await ProductDetail.find({
+        Category: body.Category,
+      });
+    } else {
+      products = await ProductDetail.find({});
+    }
     res.json({
       status: "ok",
       data: products,
@@ -144,11 +157,31 @@ let get_seller_products = async function (req, res) {
 };
 
 
+let CheckImageUsingAnalysis = async function (req, res) {
+  let body = req.body;
+  try {
+    // Read the uploaded image file
+    const imageBuffer = req.file.buffer;
+
+    // Perform image analysis using Google Cloud Vision API
+    const [result] = await client.labelDetection(imageBuffer);
+    const labels = result.labelAnnotations;
+
+    // Check if any label matches "plant"
+    const isPlantImage = labels.some((label) => label.description.toLowerCase().includes('plant'));
+
+    res.json({ isPlantImage });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Image analysis failed' });
+  }
+};
+
 module.exports = {
   add_seller_detail: add_seller_detail,
   login_verify: login_verify,
   forgot_password: forgot_password,
   add_product: add_product,
-  get_seller_products: get_seller_products
-
+  get_seller_products: get_seller_products,
+  CheckImageUsingAnalysis: CheckImageUsingAnalysis,
 };
