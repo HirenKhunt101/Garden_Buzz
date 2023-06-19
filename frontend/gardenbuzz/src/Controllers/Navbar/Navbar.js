@@ -144,7 +144,7 @@ const Navbar = () => {
                   Cart
                 </Link>
               </li>
-              <li className="nav__item">
+              {/* <li className="nav__item">
                 <Link
                   to=""
                   className={`nav__link ${
@@ -154,7 +154,7 @@ const Navbar = () => {
                 >
                   Logout
                 </Link>
-              </li>
+              </li> */}
             </ul>
 
             <div className="nav__close" id="nav-close">
