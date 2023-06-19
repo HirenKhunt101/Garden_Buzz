@@ -176,8 +176,8 @@ const Content = () => {
                 className="product__img"
               />
 
-              <h3 className="product__title">Cacti Plant</h3>
-              <span className="product__price">$19.99</span>
+              <h3 className="product__title">Tulip Plant</h3>
+              <span className="product__price">₹179</span>
 
               <button className="button--flex product__button">
                 <i className="ri-shopping-bag-line"></i>
@@ -193,8 +193,8 @@ const Content = () => {
                 className="product__img"
               />
 
-              <h3 className="product__title">Cactus Plant</h3>
-              <span className="product__price">$11.99</span>
+              <h3 className="product__title">Lavender Plant</h3>
+              <span className="product__price">₹169</span>
 
               <button className="button--flex product__button">
                 <i className="ri-shopping-bag-line"></i>
@@ -210,8 +210,8 @@ const Content = () => {
                 className="product__img"
               />
 
-              <h3 className="product__title">Aloe Vera Plant</h3>
-              <span className="product__price">$7.99</span>
+              <h3 className="product__title">Rose Plant</h3>
+              <span className="product__price">₹199</span>
 
               <button className="button--flex product__button">
                 <i className="ri-shopping-bag-line"></i>
@@ -228,7 +228,7 @@ const Content = () => {
               />
 
               <h3 className="product__title">Succulent Plant</h3>
-              <span className="product__price">$5.99</span>
+              <span className="product__price">₹159</span>
 
               <button className="button--flex product__button">
                 <i className="ri-shopping-bag-line"></i>
@@ -244,8 +244,8 @@ const Content = () => {
                 className="product__img"
               />
 
-              <h3 className="product__title">Succulent Plant</h3>
-              <span className="product__price">$10.99</span>
+              <h3 className="product__title">Orchid Plant</h3>
+              <span className="product__price">₹299</span>
 
               <button className="button--flex product__button">
                 <i className="ri-shopping-bag-line"></i>
@@ -262,7 +262,7 @@ const Content = () => {
               />
 
               <h3 className="product__title">Green Plant</h3>
-              <span className="product__price">$8.99</span>
+              <span className="product__price">₹259</span>
 
               <button className="button--flex product__button">
                 <i className="ri-shopping-bag-line"></i>
@@ -278,8 +278,8 @@ const Content = () => {
                 className="product__img"
               />
 
-              <h3 className="product__title">Green Plant</h3>
-              <span className="product__price">$8.99</span>
+              <h3 className="product__title">Daffodil Plant</h3>
+              <span className="product__price">₹249</span>
 
               <button className="button--flex product__button">
                 <i className="ri-shopping-bag-line"></i>
@@ -295,8 +295,8 @@ const Content = () => {
                 className="product__img"
               />
 
-              <h3 className="product__title">Green Plant</h3>
-              <span className="product__price">$8.99</span>
+              <h3 className="product__title">Fern Plant</h3>
+              <span className="product__price">₹189</span>
 
               <button className="button--flex product__button">
                 <i className="ri-shopping-bag-line"></i>

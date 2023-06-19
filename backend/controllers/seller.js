@@ -17,7 +17,7 @@ let user_registration = async function (req, res) {
   try {
     let findUserDetails = await UserDetail.find({ Email: body.email });
     if (findUserDetails.length > 0) {
-      return res.json({ status: "User is already Exist" });
+      return res.json({ message: "User is already Exist", status: 'failed' });
     }
 
     const UserDetailObj = new UserDetail({
@@ -30,7 +30,7 @@ let user_registration = async function (req, res) {
       Address: body.address
     });
     await UserDetailObj.save();
-    res.json({ status: "User Registered Successfully" });
+    res.json({ message: "User Registered Successfully", status: 'ok' });
   } catch (error) {
     console.log(error);
     res.json({ status: "error" });

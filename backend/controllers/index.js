@@ -36,12 +36,13 @@ app.listen(4200, () => {
   // console.log(process.env.KEY);
 });
 
-app.post("/login", async (req, res) => {
-  console.log("Joker");
-});
+// app.post("/login", async (req, res) => {
+//   console.log("Joker");
+// });
 
-app.get("/", async (req, res) => {
-  console.log("Joker");
+app.get("/test", async (req, res) => {
+  // console.log(joker);
+  res.send('<h1>Working Fine</h1>');
 });
 
 app.use("/gardenbuzz", guest);

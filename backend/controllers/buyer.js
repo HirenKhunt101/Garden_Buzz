@@ -7,12 +7,13 @@ const CartDetail = schema.cart_detail;
 
 let add_product_in_cart = async function (req, res) {
   let body = req.body.product;
+  let UserId = req.body.UserId
   try {
     const CartDetailObj = new CartDetail({
       ProductId: body._id,
       Quantity: 1,
       PotColor: body.PotColor,
-      UserId: body.UserId,
+      UserId: UserId,
     });
     await CartDetailObj.save();
     res.json({ message: "Product added Successfully", status: "ok" });
@@ -100,9 +101,27 @@ let update_cart_product_quantity = async function (req, res) {
   }
 };
 
+let place_order = async function (req, res) {
+  let body = req.body;
+  try {
+    await CartDetail.deleteMany(
+      { UserId: body.UserId }
+    );
+    res.json({
+      message: "Your order placed successfully",
+      status: "ok",
+      ok: true
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({ status: "error" });
+  }
+};
+
 module.exports = {
   add_product_in_cart: add_product_in_cart,
   remove_product_from_cart: remove_product_from_cart,
   get_cart_details: get_cart_details,
   update_cart_product_quantity: update_cart_product_quantity,
+  place_order: place_order
 };

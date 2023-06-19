@@ -7,10 +7,10 @@ import { UserData } from "../SystemSetup/UserData";
 const user_data = new UserData();
 
 const Navbar = () => {
-  const [activeLink, setActiveLink] = useState("Home");
+  const [activeLink, setActiveLink] = useState("");
 
   const handleLinkClick = (link) => {
-    setActiveLink(link);
+    // setActiveLink(link);
     if(link == 'Logout') {
       localStorage.clear();
       sessionStorage.clear();

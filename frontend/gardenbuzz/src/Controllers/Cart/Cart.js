@@ -17,8 +17,8 @@ function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [price, setPrice] = useState(0);
   const [discount, setDiscount] = useState(0);
-  const [deliveryCharges, setDeliveryCharges] = useState(40);
-  const [packagingFee, setPackagingFee] = useState(40);
+  const [deliveryCharges, setDeliveryCharges] = useState(0);
+  const [packagingFee, setPackagingFee] = useState(0);
   const [total, setTotal] = useState(0);
   const [address, setAddress] = useState("");
   const [pincode, setPincode] = useState("");
@@ -30,9 +30,25 @@ function Cart() {
     setImageMap(newImageMap);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async function (e) {
     e.preventDefault();
-    // Perform form submission or data processing here
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/gardenbuzz/place_order`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          UserId: user_data?user_data[0]._id:"",
+        }),
+      }
+    );
+    const data = await response.json();
+    if (data.ok) {
+      alert(data.message);
+      window.location.href = "/home";
+    }
   };
 
   useEffect(() => {
@@ -58,6 +74,10 @@ function Cart() {
         }
         setPrice(totalPrice);
         setProductData(data.data);
+        if(data.data.length > 0) {
+          setDeliveryCharges(40);
+          setDeliveryCharges(10 * data.data.length)
+        }
         console.log(totalPrice);
       } catch (error) {
         console.error("Error fetching product data:", error);
@@ -330,7 +350,7 @@ function Cart() {
             </div>
           </div>
 
-          <input type="submit" name="submit" value="PLACE ORDER" />
+          <input type="submit" name="submit" value="PLACE ORDER" disabled={price===0} />
         </form>
       </div>
     </>

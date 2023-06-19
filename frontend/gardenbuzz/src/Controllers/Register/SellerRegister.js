@@ -108,7 +108,11 @@ const Register = () => {
 
     if (data.status === "ok") {
       console.log("Data Add successfully");
-      // history.push('/Register')
+      alert(data.message);
+      window.location.href = '/login';
+    }
+    else {
+      alert(data.message)
     }
   }
 
