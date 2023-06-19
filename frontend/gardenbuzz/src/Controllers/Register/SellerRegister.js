@@ -10,7 +10,7 @@
 // async function registerUser(event) {
 //     event.preventDefault()
 
-//     const response = await fetch('http://localhost:4200/add_seller_detail', {
+//     const response = await fetch('http://localhost:4200/user_registration', {
 //         method: 'POST',
 //         headers: {
 //             'Content-Type': 'application/json',
@@ -75,12 +75,18 @@ const Register = () => {
   const [pincode, setPincode] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [ConfirmPassword, setConfirmPassword] = useState("");
 
   async function registerUser(event) {
     event.preventDefault();
 
+    if(password != ConfirmPassword) {
+      window.alert("Password should be same!");
+      return;
+    }
+
     const response = await fetch(
-      "http://localhost:4200/gardenbuzz/add_seller_detail",
+      `${process.env.REACT_APP_BACKEND_URL}/gardenbuzz/user_registration`,
       {
         method: "POST",
         headers: {
@@ -219,14 +225,14 @@ const Register = () => {
                   <form onSubmit={registerUser} id="stripe-login">
                     <div className="loginp1">
                       <div className="field padding-bottom--24">
-                        <label htmlFor="name">Nursery Name:</label>
+                        {/* <label htmlFor="name">Nursery Name:</label>
                         <input
                           value={nurseryname}
                           onChange={(e) => setName(e.target.value)}
                           type="text"
                           placeholder="Nursery Name"
                           required
-                        />
+                        /> */}
 
                         <label htmlFor="email">Email:</label>
                         <input
@@ -265,13 +271,13 @@ const Register = () => {
                           maxLength="6"
                         />
 
-                        <label htmlFor="username">Username:</label>
+                        {/* <label htmlFor="username">Username:</label>
                         <input
                           value={username}
                           onChange={(e) => setUsername(e.target.value)}
                           type="text"
                           placeholder="username"
-                        />
+                        /> */}
 
                         <label htmlFor="password">Password:</label>
                         <input
@@ -281,8 +287,14 @@ const Register = () => {
                           placeholder="password"
                         />
 
+                        <label htmlFor="password">Confirm Password:</label>
+                        <input
+                          onChange={(e) => setConfirmPassword(e.target.value)}
+                          type="password"
+                          placeholder="password"
+                        />
                         <div className="reset-pass">
-                          <Link to="#">Login?</Link>
+                          <Link to="/Login">Login?</Link>
                         </div>
                       </div>
                     </div>
@@ -295,18 +307,18 @@ const Register = () => {
                         required
                       />
                     </div>
-                    <div className="field">
+                    {/* <div className="field">
                       <Link className="ssolink" to="#">
                         Use single sign-on (Google) instead
                       </Link>
-                    </div>
+                    </div> */}
                   </form>
                 </div>
               </div>
               <div className="footer-link padding-top--24">
-                <span>
+                {/* <span>
                   Don't have an account? <Link to="">Sign up</Link>
-                </span>
+                </span> */}
                 <div className="listing padding-top--24 padding-bottom--24 flex-flex center-center">
                   <span>
                     <Link to="#">© Stackfindover</Link>

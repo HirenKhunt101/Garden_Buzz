@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const schema = require("./../database/database.schema");
 const mongo = require("./../database/database.service");
 const nodemailer = require("nodemailer");
-const SellerDetail = schema.seller_detail;
 const ProductDetail = schema.product_detail;
 const CartDetail = schema.cart_detail;
 
@@ -13,7 +12,7 @@ let add_product_in_cart = async function (req, res) {
       ProductId: body._id,
       Quantity: 1,
       PotColor: body.PotColor,
-      //   UserId: body.UserId,
+      UserId: body.UserId,
     });
     await CartDetailObj.save();
     res.json({ message: "Product added Successfully", status: "ok" });
@@ -37,10 +36,15 @@ let remove_product_from_cart = async function (req, res) {
 let get_cart_details = async function (req, res) {
   let body = req.body;
   try {
+
+    if(body.UserId) {
+      body.UserId = new mongoose.Types.ObjectId(body.UserId);
+    }
+
     let response = await CartDetail.aggregate([
       {
         $match: {
-          // 'UserId': ''
+          UserId: body.UserId,
         },
       },
       {

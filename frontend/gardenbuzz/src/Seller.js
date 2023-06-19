@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./Controllers/Navbar/Navbar";
 
+
 let getdata = async function () {
   console.log("Hello H");
 };
@@ -23,7 +24,7 @@ function Seller() {
       console.log(key, value);
     }
 
-    fetch("http://localhost:4200/api/register", {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/register`, {
       method: "POST",
       body: formData,
     }).then((response) => {

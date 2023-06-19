@@ -1,13 +1,13 @@
 var mongoose = require("mongoose");
 // mongoose.set("useFindAndModify", false);
 mongoose.set("returnOriginal", false);
-require("dotenv").config();
+require("dotenv").config({path:__dirname+'./../../backend/.env'});
 
 // const DB_URL =
 //   "mongodb+srv://hirenkhunt:hiren6351@cluster0.hrfgclf.mongodb.net/";
 const DB_NAME = "gardenbuzz";
-const DB_URL =
-  "mongodb+srv://hirenkhunt:hiren6351@cluster0.hrfgclf.mongodb.net/gardenbuzz";
+const DB_URL = process.env.DB_URL
+  // "mongodb+srv://hirenkhunt:hiren6351@cluster0.hrfgclf.mongodb.net/gardenbuzz";
 
 class Ntdatabase {
   constructor() {

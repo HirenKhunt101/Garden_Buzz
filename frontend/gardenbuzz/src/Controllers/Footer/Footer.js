@@ -10,7 +10,7 @@ const Footer = () => {
         <div class="footer__container container grid">
           <div class="footer__content">
             <a href="#" class="footer__logo">
-              <i class="ri-leaf-line footer__logo-icon"></i> Plantex
+              <i class="ri-leaf-line footer__logo-icon"></i> GardenBuzz
             </a>
 
             <h3 class="footer__title">

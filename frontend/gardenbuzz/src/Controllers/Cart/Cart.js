@@ -1,8 +1,17 @@
 import { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
 import "./Cart.css";
+import { UserData } from "../SystemSetup/UserData";
+const user_data = new UserData().getData('token');
 
 function Cart() {
+  console.log(process.env);
+
+  if(!user_data) {
+    localStorage.setItem("path", JSON.stringify("/Cart"));
+    window.location.href = '/login';
+  }
+
   const [imageMap, setImageMap] = useState({});
   const [productData, setProductData] = useState([]);
   const [cartItems, setCartItems] = useState([]);
@@ -30,14 +39,14 @@ function Cart() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:4200/gardenbuzz/get_cart_details",
+          `${process.env.REACT_APP_BACKEND_URL}/gardenbuzz/get_cart_details`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              UserId: "Static",
+              UserId: user_data?user_data[0]._id:"",
             }),
           }
         );
@@ -61,7 +70,7 @@ function Cart() {
   const addToCart = async (product) => {
     setCartItems([...cartItems, product]);
     const response = await fetch(
-      "http://localhost:4200/gardenbuzz/add_product_in_cart",
+      `${process.env.REACT_APP_BACKEND_URL}/gardenbuzz/add_product_in_cart`,
       {
         method: "POST",
         headers: {
@@ -89,7 +98,7 @@ function Cart() {
       ProductId: productId,
     });
     const response = await fetch(
-      "http://localhost:4200/gardenbuzz/remove_product_from_cart",
+      `${process.env.REACT_APP_BACKEND_URL}/gardenbuzz/remove_product_from_cart`,
       {
         method: "POST",
         headers: {
@@ -113,7 +122,7 @@ function Cart() {
           Quantity: Number(item.ProductQuantity) + 1,
         };
         const response = fetch(
-          "http://localhost:4200/gardenbuzz/update_cart_product_quantity",
+          `${process.env.REACT_APP_BACKEND_URL}/gardenbuzz/update_cart_product_quantity`,
           {
             method: "POST",
             headers: {
@@ -143,7 +152,7 @@ function Cart() {
             Quantity: Number(item.ProductQuantity) - 1,
           };
           const response = fetch(
-            "http://localhost:4200/gardenbuzz/update_cart_product_quantity",
+            `${process.env.REACT_APP_BACKEND_URL}/gardenbuzz/update_cart_product_quantity`,
             {
               method: "POST",
               headers: {

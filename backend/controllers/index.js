@@ -6,11 +6,10 @@ const schema = require("../database/database.schema");
 let mongo = require("./../database/database.service");
 app.use(cors());
 app.use(express.json());
-require("dotenv").config();
+require("dotenv").config({path:__dirname+'./../../backend/.env'});
 const seller = require("./seller");
 const guest = require("./../routes/guest_operation");
 
-const SellerDetail = schema.seller_detail;
 
 // const
 // const db_url =
@@ -34,9 +33,8 @@ const SellerDetail = schema.seller_detail;
 
 app.listen(4200, () => {
   console.log("server is running on 4200");
+  // console.log(process.env.KEY);
 });
-
-app.post("/add_seller_detail", async (req, res) => {});
 
 app.post("/login", async (req, res) => {
   console.log("Joker");

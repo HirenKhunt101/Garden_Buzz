@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 import "./content.css";
 // import "./button.scss";
-import {
-  FaFacebookSquare,
-  FaInstagramSquare,
-  FaYoutubeSquare,
-} from "react-icons/fa";
+// import {
+//   FaFacebookSquare,
+//   FaInstagramSquare,
+//   FaYoutubeSquare,
+// } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { UserData } from "../SystemSetup/UserData";
+const user_data = new UserData().getData('token');
 
 const Content = () => {
+
+  const handleWantToSell = () => {
+    // Set the path in localStorage
+    localStorage.setItem("path", JSON.stringify("/Upload"));
+  };
+
+
   return (
     <>
       <main className="main">
@@ -412,7 +421,7 @@ const Content = () => {
               {/* <div className="buysell__card"> */}
               <div className="buttoncontainer">
                 {/* <a href="/Sellform" class="sellbtn">WANT TO SELL</a> */}
-                <Link to="/Upload" class="sellbtn">
+                <Link to={ user_data ? "/Upload" : "/login"} class="sellbtn" onClick={handleWantToSell}>
                   WANT TO SELL
                 </Link>
               </div>
@@ -420,7 +429,7 @@ const Content = () => {
 
               {/* <div className="buysell__card">  */}
               <div className="buttoncontainer">
-                <Link to="/Plant" class="sellbtn">
+                <Link to="/Plant" className="sellbtn">
                   WANT TO BUY
                 </Link>
               </div>
@@ -484,8 +493,8 @@ const Content = () => {
       </main>
 
       {/* <!--=============== SCROLL UP ===============--> */}
-      <a href="#" class="scrollup" id="scroll-up">
-        <i class="ri-arrow-up-fill scrollup__icon"></i>
+      <a href="#" className="scrollup" id="scroll-up">
+        <i className="ri-arrow-up-fill scrollup__icon"></i>
       </a>
 
       {/* <!--=============== SCROLL REVEAL ===============--> */}

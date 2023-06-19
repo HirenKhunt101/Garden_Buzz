@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./plant.css";
+import { UserData } from "../SystemSetup/UserData";
+const user_data = new UserData().getData('token');
 
 function Flower() {
   const [imageMap, setImageMap] = useState({});
@@ -18,7 +20,7 @@ function Flower() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:4200/gardenbuzz/get_seller_products",
+          `${process.env.REACT_APP_BACKEND_URL}/gardenbuzz/get_seller_products`,
           {
             method: "POST",
             headers: {
@@ -41,14 +43,14 @@ function Flower() {
     const fetchCartData = async () => {
       try {
         const response1 = await fetch(
-          "http://localhost:4200/gardenbuzz/get_cart_details",
+          `${process.env.REACT_APP_BACKEND_URL}/gardenbuzz/get_cart_details`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              UserId: "Static",
+              UserId: user_data?user_data[0]._id:"",
             }),
           }
         );
@@ -65,24 +67,32 @@ function Flower() {
   }, [imageMap]);
 
   const addToCart = async (product) => {
-    setCartItems([...cartItems, product]);
+    if(user_data) {
+      setCartItems([...cartItems, product]);
 
-    const response = await fetch(
-      "http://localhost:4200/gardenbuzz/add_product_in_cart",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          product: product,
-        }),
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/gardenbuzz/add_product_in_cart`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            product: product,
+            UserId: user_data[0]._id,
+          }),
+        }
+      );
+      // console.log(response);
+      if (response.ok) {
+        alert("Product added successfully!");
       }
-    );
-    // console.log(response);
-    if (response.ok) {
-      alert("Product added successfully!");
     }
+    else {
+      localStorage.setItem("path", JSON.stringify("/plant"));
+      window.location.href ='/login';
+    }
+   
   };
 
   const isProductInCart = (productId) => {
@@ -96,7 +106,7 @@ function Flower() {
       ProductId: productId,
     });
     const response = await fetch(
-      "http://localhost:4200/gardenbuzz/remove_product_from_cart",
+      `${process.env.REACT_APP_BACKEND_URL}/gardenbuzz/remove_product_from_cart`,
       {
         method: "POST",
         headers: {
@@ -151,7 +161,7 @@ function Flower() {
   };
 
   // // console.log("productData" + JSON.stringify(productData));
- 
+
   return (
     <>
       <div className="productContant">
@@ -194,6 +204,11 @@ function Flower() {
                     <a href="#" class="moreInfo">
                       More Information
                     </a>
+                    {/* <Link to={`/Chatbox?sellerId=${product.UserId}`}
+                      className="moreInfo"
+                    >
+                      Chat with seller
+                    </Link> */}
                     {product.Price >= 500 && <p>Free delivery </p>}
                     {!isProductInCart(product._id) && (
                       <button

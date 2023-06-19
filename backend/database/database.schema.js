@@ -1,20 +1,20 @@
 const mongoose = require("mongoose");
 
-const User_Schema = new mongoose.Schema({
-  name: String,
-  email: String,
-  password: String,
-  CreatedAt: {
-    type: Date,
-    default: Date.now,
-  },
-  UpdatedAt: Date,
-});
+// const User_Schema = new mongoose.Schema({
+//   name: String,
+//   email: String,
+//   password: String,
+//   CreatedAt: {
+//     type: Date,
+//     default: Date.now,
+//   },
+//   UpdatedAt: Date,
+// });
 
-const User = mongoose.model("user", User_Schema);
-module.exports.user = User;
+// const User = mongoose.model("user", User_Schema);
+// module.exports.user = User;
 
-const Seller_detail = new mongoose.Schema({
+const User_detail = new mongoose.Schema({
   NurseryName: String,
   Email: String,
   ContactNumber: String,
@@ -30,8 +30,8 @@ const Seller_detail = new mongoose.Schema({
   UserType: String,
 });
 
-const SellerDetail = mongoose.model("seller_detail", Seller_detail);
-module.exports.seller_detail = SellerDetail;
+const UserDetail = mongoose.model("user_detail", User_detail);
+module.exports.user_detail = UserDetail;
 
 const Product_detail = new mongoose.Schema({
   Name: String,
@@ -47,13 +47,20 @@ const Product_detail = new mongoose.Schema({
     default: Date.now,
   },
   UpdatedAt: Date,
+  UserId: {
+    type: "ObjectId",
+    ref: "UserDetail",
+  },
 });
 
 const Productdetail = mongoose.model("product_detail", Product_detail);
 module.exports.product_detail = Productdetail;
 
 const Cart_detail = new mongoose.Schema({
-  UserId: String,
+  UserId: {
+    type: "ObjectId",
+    ref: "UserDetail",
+  },
   ProductId: {
     type: "ObjectId",
     ref: "Productdetail",
@@ -75,14 +82,14 @@ module.exports.cart_detail = Cartdetail;
 
 
 const chatMessageSchema = new mongoose.Schema({
-  sender: {
+  SenderId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'UserDetail',
     required: true,
   },
-  receiver: {
+  ReceiveId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'UserDetail',
     required: true,
   },
   content: {

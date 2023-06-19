@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import './ChatBox.css';
-const Chatbox = ({ senderId, receiverId }) => {
+import { UserData } from '../SystemSetup/UserData';
+import { useLocation } from "react-router-dom";
+const Userdata = new UserData();
+const user_data = Userdata.getData('token');
+const SenderId = user_data ? user_data[0]._id : "";
+// const Chatbox = ({ ReceiveId, SenderId }) => {
+  const Chatbox = () => {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const ReceiveId = searchParams.get("sellerId");
+  // console.log(sellerId);
+
   const [message, setMessage] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
 
@@ -12,8 +22,23 @@ const Chatbox = ({ senderId, receiverId }) => {
 
   const fetchChatHistory = async () => {
     try {
-      const response = await axios.get(`/api/chat/history/${senderId}/${receiverId}`);
-      setChatHistory(response.data);
+      // const response = await axios.get(`/api/chat/history/${ReceiveId}/${SenderId}`);
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/gardenbuzz/read_history_messages`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            SenderId: SenderId,
+            ReceiveId: ReceiveId,
+          }),
+        }
+      );
+      const data = await response.json();
+      setChatHistory(data.data);
+
     } catch (error) {
       console.error('Failed to fetch chat history:', error);
     }
@@ -23,12 +48,24 @@ const Chatbox = ({ senderId, receiverId }) => {
     if (message.trim() === '') return;
 
     try {
-      const response = await axios.post('/api/chat/send', {
-        sender: senderId,
-        receiver: receiverId,
-        content: message,
-      });
-      const newMessage = response.data;
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/gardenbuzz/send_message`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            SenderId: SenderId,
+            ReceiveId: ReceiveId,
+            Message: message
+          }),
+        }
+      );
+      // const data = await response.json();
+      // console.log(data);
+      const newMessage = await response.json();
+      // console.log(newMessage);
       setChatHistory([...chatHistory, newMessage]);
       setMessage('');
     } catch (error) {
@@ -42,9 +79,10 @@ const Chatbox = ({ senderId, receiverId }) => {
         {chatHistory.map((message) => (
           <div
             key={message._id}
-            className={`message ${message.sender._id === senderId ? 'sent' : 'received'}`}
+            className={`message ${message.SenderId === ReceiveId ? 'sent' : 'received'}`}
           >
-            {message.sender._id !== senderId && <strong>{message.sender.username}: </strong>}
+            {message.SenderId !== ReceiveId}
+            {/* {message.SenderId !== ReceiveId && <strong>{message.sender.username}: </strong>} */}
             {message.content}
           </div>
         ))}

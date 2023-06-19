@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "./firebase";
-import { v4 as uuidv4 } from "uuid";
-import { Link } from "react-router-dom";
+import { UserData } from "../SystemSetup/UserData";
+const user_data = new UserData().getData('token');
 
 function AddImage() {
   const [imageUpload, setImageUpload] = useState(null);
@@ -22,7 +22,7 @@ function AddImage() {
 
     const url = await getDownloadURL(imageRef);
     const response = await fetch(
-      "http://localhost:4200/gardenbuzz/add_product",
+      `${process.env.REACT_APP_BACKEND_URL}/gardenbuzz/add_product`,
       {
         method: "POST",
         headers: {
@@ -36,6 +36,7 @@ function AddImage() {
           CareInstructions: careInstructions,
           ProductQuantity: productQuantity,
           ImageURL: url,
+          UserId: user_data[0]._id
         }),
       }
     );

@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./BuyProduct.css";
+// require("dotenv").config({path:__dirname+'./../../../../../frontend/.env'});
+// require('dotenv').config()
+
 
 function BuyProduct() {
   const [imageMap, setImageMap] = useState({});
@@ -18,7 +21,7 @@ function BuyProduct() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:4200/gardenbuzz/get_seller_products",
+          `${process.env.REACT_APP_BACKEND_URL}/gardenbuzz/get_seller_products`,
           {
             method: "POST",
             headers: {
@@ -41,7 +44,7 @@ function BuyProduct() {
     const fetchCartData = async () => {
       try {
         const response1 = await fetch(
-          "http://localhost:4200/gardenbuzz/get_cart_details",
+          `${process.env.REACT_APP_BACKEND_URL}/gardenbuzz/get_cart_details`,
           {
             method: "POST",
             headers: {
@@ -68,7 +71,7 @@ function BuyProduct() {
     setCartItems([...cartItems, product]);
 
     const response = await fetch(
-      "http://localhost:4200/gardenbuzz/add_product_in_cart",
+      `${process.env.REACT_APP_BACKEND_URL}/gardenbuzz/add_product_in_cart`,
       {
         method: "POST",
         headers: {
@@ -96,7 +99,7 @@ function BuyProduct() {
       ProductId: productId,
     });
     const response = await fetch(
-      "http://localhost:4200/gardenbuzz/remove_product_from_cart",
+      `${process.env.REACT_APP_BACKEND_URL}/gardenbuzz/remove_product_from_cart`,
       {
         method: "POST",
         headers: {

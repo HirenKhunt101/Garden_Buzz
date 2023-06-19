@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./sellerProduct.css";
-
+import { UserData } from "../SystemSetup/UserData";
+const Userdata = new UserData();
 function Upload() {
   const [imageMap, setImageMap] = useState({});
   const [productData, setProductData] = useState([]);
+  const navigate = useNavigate();
 
   const handleImageError = (url) => {
     const newImageMap = { ...imageMap };
@@ -15,20 +17,28 @@ function Upload() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:4200/gardenbuzz/get_seller_products",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              // imageUrls: Object.keys(imageMap),
-            }),
-          }
-        );
-        const data = await response.json();
-        setProductData(data.data);
+        let user_data = Userdata.getData('token');
+        if(user_data) {
+          const response = await fetch(
+            `${process.env.REACT_APP_BACKEND_URL}/gardenbuzz/get_seller_products`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                // imageUrls: Object.keys(imageMap),
+                UserId: user_data[0]._id
+              }),
+            }
+          );
+          const data = await response.json();
+          setProductData(data.data);
+        }
+        else {
+          navigate("/Login");
+        }
+       
       } catch (error) {
         console.error("Error fetching product data:", error);
       }
@@ -37,7 +47,7 @@ function Upload() {
     fetchData();
   }, [imageMap]);
 
-  console.log("productData" + JSON.stringify(productData));
+  // console.log("productData" + JSON.stringify(productData));
 
   return (
     <>

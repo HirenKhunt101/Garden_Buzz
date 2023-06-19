@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./login.css";
 // import Register from "../Register/SellerRegister";
+import { UserData } from "../SystemSetup/UserData";
+const user_path = new UserData().getData('path');
 
 const Login = () => {
+  // let u  = new UserData();
+  // console.log(u.getData('token'));
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -11,7 +16,7 @@ const Login = () => {
     event.preventDefault();
 
     const response = await fetch(
-      "http://localhost:4200/gardenbuzz/login_verify",
+      `${process.env.REACT_APP_BACKEND_URL}/gardenbuzz/login_verify`,
       {
         method: "POST",
         headers: {
@@ -32,9 +37,11 @@ const Login = () => {
     // }
 
     if (data.status === "ok") {
-      localStorage.setItem("token", data.data);
+      localStorage.setItem("token", JSON.stringify(data.data));
       alert("Login successful");
-      window.location.href = "/home";
+      // window.location.href = "/home";
+      console.log(user_path);
+      window.location.href = user_path ? user_path : '/home';
     } else {
       alert("Please check your username and password");
     }
@@ -168,12 +175,13 @@ const Login = () => {
                         />
                       </div>
                       <div className="field padding-bottom--24">
-                        <div className="grid--50-50">
+                        {/* <div className="grid--50-50">
                           <label htmlFor="password">Password</label>
                           <div className="reset-pass">
                             <Link to="#">Forgot your password?</Link>
                           </div>
-                        </div>
+                        </div> */}
+                        <label htmlFor="password">Password</label>
                         <input
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
@@ -183,12 +191,12 @@ const Login = () => {
                         />
                       </div>
                     </div>
-                    <div className="field field-checkbox padding-bottom--24 flex-flex align-center">
+                    {/* <div className="field field-checkbox padding-bottom--24 flex-flex align-center">
                       <label htmlFor="checkbox">
                         <input type="checkbox" name="checkbox" /> Stay signed in
                         for a week
                       </label>
-                    </div>
+                    </div> */}
                     <div className="field padding-bottom--24">
                       <input
                         type="submit"
@@ -197,17 +205,17 @@ const Login = () => {
                         required
                       />
                     </div>
-                    <div className="field">
+                    {/* <div className="field">
                       <Link className="ssolink" to="#">
                         Use single sign-on (Google) instead
                       </Link>
-                    </div>
+                    </div> */}
                   </form>
                 </div>
               </div>
               <div className="footer-link padding-top--24">
                 <span>
-                  Don't have an account? <Link to="">Sign up</Link>
+                  Don't have an account? <Link to="/Register">Sign up</Link>
                 </span>
                 <div className="listing padding-top--24 padding-bottom--24 flex-flex center-center">
                   <span>

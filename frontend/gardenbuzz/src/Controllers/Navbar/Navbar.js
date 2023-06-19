@@ -3,12 +3,18 @@ import React, { useState } from "react";
 import "./navbar.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
+import { UserData } from "../SystemSetup/UserData";
+const user_data = new UserData();
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("Home");
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
+    if(link == 'Logout') {
+      localStorage.clear();
+      sessionStorage.clear();
+    }
   };
 
   return (
@@ -136,6 +142,17 @@ const Navbar = () => {
                   onClick={() => handleLinkClick("Cart")}
                 >
                   Cart
+                </Link>
+              </li>
+              <li className="nav__item">
+                <Link
+                  to=""
+                  className={`nav__link ${
+                    activeLink === "Logout" ? "active-link" : ""
+                  }`}
+                  onClick={() => handleLinkClick("Logout")}
+                >
+                  Logout
                 </Link>
               </li>
             </ul>

@@ -5,30 +5,31 @@ const nodemailer = require("nodemailer");
 const multer = require('multer');
 const fs = require('fs');
 const vision = require('@google-cloud/vision');
-const SellerDetail = schema.seller_detail;
+const UserDetail = schema.user_detail;
 const ProductDetail = schema.product_detail;
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 const client = new vision.ImageAnnotatorClient();
 
-let add_seller_detail = async function (req, res) {
+let user_registration = async function (req, res) {
   let body = req.body;
   try {
-    let findUserDetails = await SellerDetail.find({ Email: body.email });
+    let findUserDetails = await UserDetail.find({ Email: body.email });
     if (findUserDetails.length > 0) {
       return res.json({ status: "User is already Exist" });
     }
 
-    const SellerDetailObj = new SellerDetail({
+    const UserDetailObj = new UserDetail({
       NurseryName: body.nurseryname,
       Email: body.email,
       Username: body.username,
       Password: body.password,
       ContactNumber: body.contactnumber,
       Pincode: body.pincode,
+      Address: body.address
     });
-    await SellerDetailObj.save();
+    await UserDetailObj.save();
     res.json({ status: "User Registered Successfully" });
   } catch (error) {
     console.log(error);
@@ -39,7 +40,7 @@ let add_seller_detail = async function (req, res) {
 let login_verify = async function (req, res) {
   let body = req.body;
   try {
-    const data = await SellerDetail.find({
+    const data = await UserDetail.find({
       Email: body.email,
       Password: body.password,
     });
@@ -123,6 +124,7 @@ let add_product = async function (req, res) {
     product_detail.CareInstructions = body.CareInstructions;
     product_detail.ProductQuantity = body.ProductQuantity;
     product_detail.ImageURL = body.ImageURL;
+    product_detail.UserId = body.UserId;
 
     product_detail.save();
     res.json({
@@ -144,7 +146,7 @@ let get_seller_products = async function (req, res) {
         Category: body.Category,
       });
     } else {
-      products = await ProductDetail.find({});
+      products = await ProductDetail.find({UserId: body.UserId});
     }
     res.json({
       status: "ok",
@@ -178,7 +180,7 @@ let CheckImageUsingAnalysis = async function (req, res) {
 };
 
 module.exports = {
-  add_seller_detail: add_seller_detail,
+  user_registration: user_registration,
   login_verify: login_verify,
   forgot_password: forgot_password,
   add_product: add_product,
